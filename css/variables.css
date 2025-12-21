@@ -1,0 +1,51 @@
+/* Google Fonts Import */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Lato:wght@300;400;700&family=Montserrat:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap');
+
+:root {
+    /* Colors */
+    --color-primary-gold: #C5A059; /* Classic Gold approximation */
+    --color-primary-champagne: #F3E5AB; /* Lighter Champagne */
+    --color-primary-gradient: linear-gradient(135deg, #C5A059 0%, #F3E5AB 50%, #C5A059 100%);
+    
+    --color-secondary-rose: #E0C0C0; /* Muted Rose / Dusty Pink */
+    
+    --color-bg-alabaster: #FAFAFA;
+    --color-bg-white: #FFFFFF;
+    
+    --color-text-charcoal: #333333;
+    --color-text-muted: #666666;
+
+    /* Typography */
+    --font-heading-playfair: 'Playfair Display', serif;
+    --font-heading-cormorant: 'Cormorant Garamond', serif;
+    
+    --font-body-lato: 'Lato', sans-serif;
+    --font-body-montserrat: 'Montserrat', sans-serif;
+    
+    --font-family-heading: var(--font-heading-playfair); /* Default choice */
+    --font-family-body: var(--font-body-lato); /* Default choice */
+
+    /* Effects */
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: 1px solid rgba(255, 255, 255, 0.3);
+    --glass-blur: blur(10px);
+    --glass-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+    
+    --transition-speed: 0.3s;
+}
+
+.glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: var(--glass-border);
+    box-shadow: var(--glass-shadow);
+}
+
+.text-gradient-gold {
+    background: var(--color-primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+}

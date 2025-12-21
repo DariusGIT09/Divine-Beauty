@@ -1,0 +1,192 @@
+@import 'variables.css';
+
+/* Hero Section */
+.hero {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    /* Parallax effect base */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* Fallback image if JS fails or image loads late */
+    background-image: url('../assets/hero-bg.png');
+}
+
+/* Background Image Element for smoother Parallax control if needed, 
+   but CSS 'background-attachment: fixed' is simpler for pure CSS solution requested */
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    /* Slight darken for text readability */
+    z-index: 1;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    color: var(--color-bg-white);
+    padding: 0 1rem;
+    animation: fadeInUp 1.2s ease-out;
+}
+
+.hero-title {
+    font-family: var(--font-heading-playfair);
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    line-height: 1.1;
+    /* Gradient Text Support fallback */
+    background: var(--color-primary-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+
+    /* Text Shadow for contrast if gradient is too light against bg */
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 768px) {
+    .hero-title {
+        font-size: 5rem;
+    }
+}
+
+.btn-cta {
+    display: inline-block;
+    padding: 1rem 2.5rem;
+    font-family: var(--font-body-montserrat);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: var(--color-bg-white);
+    color: var(--color-text-charcoal);
+    border: 2px solid var(--color-bg-white);
+    transition: all var(--transition-speed) ease;
+    margin-top: 2rem;
+    position: relative;
+    overflow: hidden;
+    /* Magnetic hover effect simulation via nice transition */
+}
+
+.btn-cta:hover {
+    background: transparent;
+    color: var(--color-bg-white);
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Introduction Section */
+.intro {
+    background-color: var(--color-bg-alabaster);
+    padding: 8rem 0;
+    /* Lots of whitespace */
+}
+
+.intro-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-family: var(--font-heading-playfair);
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: var(--color-text-charcoal);
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 2px;
+    background: var(--color-primary-gold);
+    margin: 1rem auto 0;
+}
+
+.intro-text {
+    font-size: 1.1rem;
+    color: var(--color-text-muted);
+    font-weight: 300;
+}
+
+/* Features Section */
+.features {
+    background-color: var(--color-bg-white);
+    padding: 6rem 0;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    margin-top: 3rem;
+}
+
+@media (min-width: 768px) {
+    .features-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.feature-item {
+    text-align: center;
+    padding: 2rem;
+    transition: transform var(--transition-speed);
+}
+
+.feature-item:hover {
+    transform: translateY(-5px);
+}
+
+.feature-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1.5rem;
+    color: var(--color-primary-gold);
+}
+
+.feature-icon svg {
+    width: 100%;
+    height: 100%;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    fill: none;
+}
+
+.feature-title {
+    font-family: var(--font-heading-cormorant);
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.feature-desc {
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
