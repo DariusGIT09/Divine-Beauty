@@ -163,7 +163,7 @@ img {
 }
 
 .homepage .logo img {
-    filter: brightness(0) invert(1);
+    /* filter: brightness(0) invert(1); Removed to show original logo colors */
 }
 
 .homepage .navbar.scrolled .logo img {
