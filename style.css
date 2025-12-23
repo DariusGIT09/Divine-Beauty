@@ -401,6 +401,14 @@ img {
     margin: 1rem auto 0;
 }
 
+.text-center {
+    text-align: center !important;
+}
+
+.section-title.text-center {
+    display: block;
+}
+
 .intro p {
     max-width: 700px;
     margin: 0 auto;
@@ -993,4 +1001,107 @@ footer {
 
 .featured-card:hover .featured-overlay {
     opacity: 1;
+}
+
+/* --- Founder's Vision Section --- */
+.founder-section {
+    background-color: var(--color-bg-white);
+    position: relative;
+    overflow: hidden;
+}
+
+.founder-layout {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    align-items: center;
+    /* Center vertically */
+}
+
+@media (min-width: 992px) {
+    .founder-layout {
+        grid-template-columns: 1.1fr 0.9fr;
+        /* Slight bias to text */
+        gap: 6rem;
+    }
+}
+
+.founder-content {
+    animation: fadeIn 1s ease-out;
+}
+
+.founder-title {
+    font-size: 2rem;
+    color: var(--color-primary-gold);
+    line-height: 1.3;
+    margin-bottom: 1rem;
+    font-weight: 300;
+    /* Elegant thin look */
+}
+
+@media (min-width: 768px) {
+    .founder-title {
+        font-size: 2.8rem;
+    }
+}
+
+.founder-text {
+    font-size: 1.1rem;
+    color: var(--color-text-charcoal);
+    line-height: 1.8;
+    margin-bottom: 2.5rem;
+    opacity: 0.9;
+}
+
+.founder-signature p {
+    font-family: 'Playfair Display', serif;
+    /* Or script font if available */
+    font-size: 1.5rem;
+    color: var(--color-primary-gold);
+    margin-bottom: 0.2rem;
+}
+
+.founder-signature span {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-text-muted);
+}
+
+.founder-image-wrapper {
+    position: relative;
+    padding: 15px;
+    border: 1px solid var(--color-primary-gold);
+    background-color: transparent;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.founder-image-wrapper .founder-image {
+    width: 100%;
+    display: block;
+    /* Ensure image sits nicely */
+}
+
+/* Mobile Adjustments for Founder Section */
+@media (max-width: 768px) {
+    .founder-layout {
+        gap: 3rem;
+    }
+
+    .founder-content {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .founder-section .luxury-separator-custom {
+        justify-content: center !important;
+        margin: 1.5rem auto !important;
+    }
+
+    .founder-title {
+        font-size: 1.8rem;
+    }
 }
