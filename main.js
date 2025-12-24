@@ -76,3 +76,55 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+// Contact Form Handling with EmailJS
+const contactForm = document.getElementById('contact-form');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        // Show loading state
+        const submitBtn = this.querySelector('button[type="submit"]');
+        const originalBtnText = submitBtn.innerText;
+        submitBtn.innerText = 'Se trimite...';
+        submitBtn.disabled = true;
+
+        // Generate a random 5-digit number for the contact_number variable
+        this.contact_number.value = Math.random() * 100000 | 0;
+
+        // Service and Template IDs (User needs to replace these)
+        const serviceID = 'service_xm9yznh';
+        const templateID = 'template_h0lfufu';
+
+        emailjs.sendForm(serviceID, templateID, this)
+            .then(() => {
+                // Success
+                submitBtn.innerText = 'Mesaj Trimis!';
+                submitBtn.style.backgroundColor = '#4CD964'; // Success Green
+                submitBtn.style.borderColor = '#4CD964';
+                contactForm.reset();
+
+                setTimeout(() => {
+                    submitBtn.innerText = originalBtnText;
+                    submitBtn.disabled = false;
+                    submitBtn.style.backgroundColor = '';
+                    submitBtn.style.borderColor = '';
+                }, 3000);
+            }, (err) => {
+                // Error
+                submitBtn.innerText = 'Eroare!';
+                submitBtn.style.backgroundColor = '#FF3B30'; // Error Red
+                submitBtn.style.borderColor = '#FF3B30';
+                console.log('FAILED...', err);
+                alert('A apărut o eroare la trimitere. Te rugăm să ne contactezi telefonic.');
+
+                setTimeout(() => {
+                    submitBtn.innerText = originalBtnText;
+                    submitBtn.disabled = false;
+                    submitBtn.style.backgroundColor = '';
+                    submitBtn.style.borderColor = '';
+                }, 3000);
+            });
+    });
+};

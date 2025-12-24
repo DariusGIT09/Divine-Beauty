@@ -8,6 +8,15 @@
     <link rel="stylesheet" href="style.css">
 </head>
 
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script type="text/javascript">
+    (function () {
+        // https://dashboard.emailjs.com/admin/account
+        emailjs.init("pub8fBej0gn00Yfve"); // User needs to replace this
+    })();
+</script>
+</head>
+
 <body>
 
     <nav class="navbar">
@@ -81,24 +90,34 @@
             </div>
 
             <div class="contact-form-wrapper">
-                <form style="width: 100%; max-width: 400px;">
+                <form id="contact-form" style="width: 100%; max-width: 400px;">
                     <h2 class="section-title">Scrie-ne</h2>
+                    <input type="hidden" name="contact_number">
 
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Numele tău" required>
+                        <label for="user_name" style="margin-bottom: 0.5rem; display: block;">Nume</label>
+                        <input type="text" class="form-control" name="user_name" id="user_name" placeholder="Numele tău"
+                            required>
                     </div>
 
                     <div class="form-group">
-                        <input type="email" class="form-control" placeholder="Email" required>
+                        <label for="user_email" style="margin-bottom: 0.5rem; display: block;">Email</label>
+                        <input type="email" class="form-control" name="user_email" id="user_email" placeholder="Email"
+                            required>
                     </div>
 
                     <div class="form-group">
-                        <input type="tel" class="form-control" placeholder="Telefon">
+                        <label for="phone" style="margin-bottom: 0.5rem; display: block;">Telefon</label>
+                        <input type="tel" class="form-control" name="phone" id="phone" placeholder="Telefon">
                     </div>
 
                     <div class="form-group">
-                        <textarea class="form-control" rows="4" placeholder="Mesajul tău" required></textarea>
+                        <label for="message" style="margin-bottom: 0.5rem; display: block;">Mesaj</label>
+                        <textarea class="form-control" name="message" id="message" rows="4" placeholder="Mesajul tău"
+                            required></textarea>
                     </div>
+
+                    <div id="form-status" style="margin-bottom: 1rem; display: none;"></div>
 
                     <button type="submit" class="btn btn-primary">Trimite Mesajul</button>
                 </form>
@@ -138,6 +157,7 @@
                     <li><a href="pages/sprancene.html">Sprâncene & Gene</a></li>
                     <li><a href="pages/micropigmentare.html">Micropigmentare</a></li>
                     <li><a href="pages/faciale.html">Tratamente Faciale</a></li>
+                    <li><a href="pages/corporale.html">Tratamente Corporale</a></li>
                     <li><a href="pages/phiremoval.html">PhiRemoval</a></li>
                 </ul>
             </div>
