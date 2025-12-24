@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prețuri | Divine Beauty by Vanessa Francesca</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Prices Page Specific Styles */
+        .staff-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            justify-content: center;
+            /* Center items if fewer than grid columns */
+        }
+
+        .staff-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+            text-align: center;
+            max-width: 350px;
+            /* Limit width */
+            margin: 0 auto;
+            /* Center in grid cell */
+            width: 100%;
+        }
+
+        .staff-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .staff-img {
+            width: 100%;
+            height: auto;
+            aspect-ratio: 3/4;
+            /* Force portrait aspect ratio */
+            object-fit: cover;
+            object-position: top;
+        }
+
+        .staff-info {
+            padding: 2rem;
+        }
+
+        .staff-name {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            color: var(--color-text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .staff-role {
+            color: var(--color-accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            display: block;
+        }
+
+        /* MODAL STYLES */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal.show {
+            display: block;
+            opacity: 1;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            margin: 5% auto;
+            padding: 0;
+            border: 1px solid #888;
+            width: 90%;
+            max-width: 800px;
+            border-radius: 12px;
+            position: relative;
+            transform: translateY(-50px);
+            transition: transform 0.3s ease;
+            max-height: 90vh;
+            /* Prevent modal from exceeding screen height */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal.show .modal-content {
+            transform: translateY(0);
+        }
+
+        .close-button {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            z-index: 10;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close-button:hover,
+        .close-button:focus {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .modal-header {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+            background-color: #f9f9f9;
+            border-radius: 12px 12px 0 0;
+            text-align: center;
+        }
+
+        .modal-body {
+            padding: 30px;
+            overflow-y: auto;
+            /* Scroll inside modal if content is long */
+        }
+
+        /* Accordion in Modal Styles (Same as before but adjusted context) */
+        .price-category {
+            margin-bottom: 2rem;
+            background: #fff;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .category-title {
+            font-family: var(--font-heading);
+            color: var(--color-text-dark);
+            font-size: 1.3rem;
+            border-bottom: 1px solid var(--color-accent);
+            padding-bottom: 1rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feature-icon-small {
+            width: 24px;
+            height: 24px;
+            color: var(--color-accent);
+        }
+
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem 0;
+            border-bottom: 1px dashed #eee;
+        }
+
+        .price-item:last-child {
+            border-bottom: none;
+        }
+
+        .price-name {
+            font-weight: 500;
+            color: #444;
+        }
+
+        .price-value {
+            font-weight: 700;
+            color: var(--color-accent);
+            font-family: var(--font-heading);
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="assets/Vanessa-logo.png" alt="Vanessa Francesca Logo">
+            </a>
+            <div class="nav-links">
+                <a href="index.html">Prima Pagină</a>
+                <a href="services.html">Servicii</a>
+                <a href="despre-noi.html">Despre Noi</a>
+                <a href="#">Galerie</a>
+                <a href="preturi.html">Prețuri</a>
+                <a href="contact.html">Contact</a>
+            </div>
+            <div class="burger-menu">
+                <div class="line1"></div>
+                <div class="line2"></div>
+                <div class="line3"></div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="page-banner">
+        <!-- Animated SVG Background -->
+        <svg class="hero-bg-svg" viewBox="0 0 1440 900" xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="xMidYMid slice" style="z-index: 1;">
+            <defs>
+                <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#D4AF37;stop-opacity:0.3" />
+                    <stop offset="100%" style="stop-color:#FDFBF7;stop-opacity:0.1" />
+                </linearGradient>
+            </defs>
+            <path class="draw-path" d="M -100 450 C 200 450, 400 200, 600 450 S 1000 700, 1540 450" fill="none"
+                stroke="url(#goldGradient)" stroke-width="1.5" />
+            <path class="draw-path delay-1" d="M -100 550 C 200 550, 400 300, 600 550 S 1000 800, 1540 550" fill="none"
+                stroke="url(#goldGradient)" stroke-width="1" />
+            <path class="draw-path delay-2" d="M -100 350 C 200 350, 400 100, 600 350 S 1000 600, 1540 350" fill="none"
+                stroke="url(#goldGradient)" stroke-width="0.5" />
+            <path class="draw-path profile-path" d="M 1200 200 Q 1100 300 1200 400 T 1200 600" fill="none"
+                stroke="#D4AF37" stroke-width="1.5" opacity="0.4" />
+        </svg>
+        <h1 class="page-title text-gold">Lista de Prețuri</h1>
+    </div>
+
+    <section class="section-padding">
+        <div class="container">
+            <h2 class="section-title text-center">Specialiștii noștri</h2>
+            <div class="luxury-separator-custom">
+                <div class="diamond"></div>
+            </div>
+
+            <!-- Staff Grid -->
+            <div class="staff-grid">
+                <!-- Vanessa Card -->
+                <div class="staff-card">
+                    <img src="assets/VanessaFrancesca.jpg" alt="Vanessa Francesca" class="staff-img">
+                    <div class="staff-info">
+                        <h3 class="staff-name">Vanessa Francesca</h3>
+                        <span class="staff-role">Founder & Master Cosmetician</span>
+
+                        <button class="btn btn-outline" onclick="openModal('vanessa')">
+                            Vezi Lista de Prețuri
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Modal for Vanessa -->
+    <div id="modal-vanessa" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close-button" onclick="closeModal('vanessa')">&times;</span>
+                <h2 style="margin:0; font-family: var(--font-heading); color: var(--color-text-dark);">Lista Prețuri -
+                    Vanessa Francesca</h2>
+            </div>
+            <div class="modal-body">
+
+                <!-- Category 1: Sprancene & Gene -->
+                <div class="price-category">
+                    <h3 class="category-title">
+                        <svg class="feature-icon-small" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
+                            <circle cx="12" cy="12" r="3" />
+                        </svg>
+                        Sprâncene & Gene
+                    </h3>
+                    <div class="price-item">
+                        <span class="price-name">Stilizare Sprâncene (Formă + Vopsit)</span>
+                        <span class="price-value">100 RON</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="price-name">Laminare Sprâncene</span>
+                        <span class="price-value">200 RON</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="price-name">Laminare Gene</span>
+                        <span class="price-value">180 RON</span>
+                    </div>
+                </div>
+
+                <!-- Category 2: Micropigmentare -->
+                <div class="price-category">
+                    <h3 class="category-title">
+                        <svg class="feature-icon-small" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                        </svg>
+                        Micropigmentare
+                    </h3>
+                    <div class="price-item">
+                        <span class="price-name">Micropigmentare Sprâncene (Powder)</span>
+                        <span class="price-value">1200 RON</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="price-name">Micropigmentare Buze (Aquarelle)</span>
+                        <span class="price-value">1300 RON</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="price-name">Retuș (după 1 lună)</span>
+                        <span class="price-value">300 RON</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="price-name">PhiRemoval (Ședință)</span>
+                        <span class="price-value">400 RON</span>
+                    </div>
+                </div>
+
+                <!-- Category 3: Tratamente Faciale -->
+                <div class="price-category">
+                    <h3 class="category-title">
+                        <svg class="feature-icon-small" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M8 14s1.5 2 4 2 4-2 4-2" />
+                            <line x1="9" y1="9" x2="9.01" y2="9" />
+                            <line x1="15" y1="9" x2="15.01" y2="9" />
+                        </svg>
+                        Tratamente Faciale
+                    </h3>
+                    <div class="price-item">
+                        <span class="price-name">Curățare Profundă (Hydrafacial)</span>
+                        <span class="price-value">350 RON</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="price-name">Microneedling (Dermapen)</span>
+                        <span class="price-value">450 RON</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="price-name">Peeling Chimic</span>
+                        <span class="price-value">300 RON</span>
+                    </div>
+                </div>
+
+                <!-- Category 4: Coafor -->
+                <div class="price-category">
+                    <h3 class="category-title">
+                        <svg class="feature-icon-small" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="M12 2a5 5 0 0 0-5 5v2a5 5 0 0 0 10 0V7a5 5 0 0 0-5-5Z" />
+                            <path d="M4 14v7" />
+                            <path d="M20 14v7" />
+                            <path d="M8 12h8" />
+                            <path d="M9 16h6" />
+                        </svg>
+                        Coafor
+                    </h3>
+                    <div class="price-item">
+                        <span class="price-name">Tuns Damă (Spălat + Coafat)</span>
+                        <span class="price-value">150 RON</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="price-name">Vopsit Rădăcină</span>
+                        <span class="price-value">200 RON</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="price-name">Vopsit Total (Păr Mediu)</span>
+                        <span class="price-value">350 RON</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="price-name">Coafat Ocazie</span>
+                        <span class="price-value">250 RON</span>
+                    </div>
+                </div>
+
+                <!-- Category 5: Make-up -->
+                <div class="price-category">
+                    <h3 class="category-title">
+                        <svg class="feature-icon-small" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path d="m19 13 1-1h-5v2h5l-1-1z" />
+                            <path d="m9 22 3-9" />
+                            <path d="m15 22-3-9" />
+                            <path d="M22 2 11 13" />
+                            <circle cx="16.5" cy="7.5" r=".5" />
+                        </svg>
+                        Make-up
+                    </h3>
+                    <div class="price-item">
+                        <span class="price-name">Make-up De Zi / Natural</span>
+                        <span class="price-value">250 RON</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="price-name">Make-up De Seară</span>
+                        <span class="price-value">350 RON</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="price-name">Make-up Mireasă</span>
+                        <span class="price-value">450 RON</span>
+                    </div>
+                </div>
+                <!-- Category 6: Corporale -->
+                <div class="price-category">
+                    <h3 class="category-title">
+                        <svg class="feature-icon-small" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="2">
+                            <path
+                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+                        </svg>
+                        Tratamente Corporale
+                    </h3>
+                    <div class="price-item">
+                        <span class="price-name">Radiofrecvență (30 min)</span>
+                        <span class="price-value">150 RON</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="price-name">Cavitație (40 min)</span>
+                        <span class="price-value">180 RON</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="price-name">Împachetare Anticelulitică</span>
+                        <span class="price-value">120 RON</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col footer-about">
+                    <img src="assets/Vanessa-logo.png" alt="Vanessa Francesca Logo"
+                        style="height: 100px; margin-bottom: 1.5rem; filter: brightness(0) invert(1);">
+                    <p>Redefinim standardele frumuseții prin precizie, artă și o atmosferă serenă. Sanctuarul tău de
+                        relaxare și eleganță.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Link-uri Rapide</h4>
+                    <ul>
+                        <li><a href="index.html">Prima Pagină</a></li>
+                        <li><a href="services.html">Servicii</a></li>
+                        <li><a href="despre-noi.html">Despre Noi</a></li>
+                        <li><a href="#">Galerie</a></li>
+                        <li><a href="preturi.html">Prețuri</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Servicii Populare</h4>
+                    <ul>
+                        <li><a href="pages/sprancene.html">Sprâncene & Gene</a></li>
+                        <li><a href="pages/micropigmentare.html">Micropigmentare</a></li>
+                        <li><a href="pages/faciale.html">Tratamente Faciale</a></li>
+                        <li><a href="pages/corporale.html">Tratamente Corporale</a></li>
+                        <li><a href="pages/phiremoval.html">PhiRemoval</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>Str. Eugen Ionesco, nr. 69, Cluj-Napoca</li>
+                        <li>+40 770 496 623</li>
+                        <li>contact@divinebeauty.ro</li>
+                    </ul>
+                    <div class="footer-social">
+                        <a href="#" class="social-icon"><svg viewBox="0 0 24 24" width="18" height="18"
+                                stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg></a>
+                        <a href="#" class="social-icon"><svg viewBox="0 0 24 24" width="18" height="18"
+                                stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Divine Beauty by Vanessa Francesca. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="main.js"></script>
+    <script>
+        // Modal Logic
+        function openModal(staffId) {
+            const modal = document.getElementById('modal-' + staffId);
+            if (modal) {
+                modal.style.display = "block";
+                setTimeout(() => {
+                    modal.classList.add('show');
+                }, 10);
+                document.body.style.overflow = 'hidden'; // Disable background scroll
+            }
+        }
+
+        function closeModal(staffId) {
+            const modal = document.getElementById('modal-' + staffId);
+            if (modal) {
+                modal.classList.remove('show');
+                setTimeout(() => {
+                    modal.style.display = "none";
+                }, 300);
+                document.body.style.overflow = ''; // Enable background scroll
+            }
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function (event) {
+            if (event.target.classList.contains('modal')) {
+                const modals = document.querySelectorAll('.modal');
+                modals.forEach(modal => {
+                    if (modal.style.display === 'block') {
+                        modal.classList.remove('show');
+                        setTimeout(() => {
+                            modal.style.display = "none";
+                        }, 300);
+                        document.body.style.overflow = '';
+                    }
+                });
+            }
+        }
+    </script>
+</body>
+
+</html>
