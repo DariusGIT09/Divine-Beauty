@@ -909,15 +909,15 @@ footer {
 }
 
 .featured-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    /* Changed to stacked layout via inline styles in HTML, or we can enforce here to be safe */
+    display: flex;
+    flex-direction: column;
     align-items: center;
+    gap: 3rem;
 }
 
 @media (max-width: 768px) {
     .featured-layout {
-        grid-template-columns: 1fr;
         gap: 2rem;
     }
 
@@ -956,13 +956,29 @@ footer {
 }
 
 .featured-text {
-    padding-right: 2rem;
+    padding-right: 0;
+    max-width: 800px;
+    text-align: center;
+    margin: 0 auto;
 }
 
 .featured-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(4, 1fr);
     gap: 1.5rem;
+    width: 100%;
+}
+
+@media (max-width: 900px) {
+    .featured-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .featured-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .featured-card {

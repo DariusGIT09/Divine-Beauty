@@ -65,24 +65,22 @@
     <!-- NEW Featured Services Section -->
     <section class="featured-services section-padding" style="background-color: var(--color-bg-light);">
         <div class="container">
-            <div class="featured-layout">
-                <!-- Left Column: Text -->
-                <div class="featured-text">
-                    <h2 class="section-title text-start">Serviciile noastre</h2>
-                    <div class="luxury-separator-custom"
-                        style="margin: 2rem 0; justify-content: flex-start; max-width: 200px;">
+            <div class="featured-layout" style="display: flex; flex-direction: column; align-items: center; gap: 3rem;">
+                <!-- Top: Centered Text -->
+                <div class="featured-text text-center" style="max-width: 800px; padding: 0;">
+                    <h2 class="section-title text-center" style="display: block;">Serviciile noastre</h2>
+                    <div class="luxury-separator-custom" style="justify-content: center; margin: 1.5rem auto;">
                         <div class="diamond"></div>
                     </div>
-                    <p class="section-desc" style="text-align: left; margin-bottom: 2rem;">
+                    <p class="section-desc text-center" style="margin-bottom: 2rem;">
                         Descoperă tratamentele noastre de lux, special create pentru a-ți evidenția frumusețea naturală.
                         De la stilizarea sprâncenelor la tratamente faciale avansate, fiecare serviciu este o experiență
                         de răsfăț.
                     </p>
-                    <a href="services.html" class="btn btn-primary">Vezi toate serviciile &rarr;</a>
                 </div>
 
-                <!-- Right Column: Image Grid -->
-                <div class="featured-grid">
+                <!-- Middle: Image Grid -->
+                <div class="featured-grid" style="width: 100%;">
                     <a href="pages/sprancene.html" class="featured-card">
                         <img src="assets/public/Sprancene&Gene/sideview-young-woman-lying-lashes-enlarging.jpg"
                             alt="Sprâncene">
@@ -103,6 +101,9 @@
                         <div class="featured-overlay"><span>Coafor</span></div>
                     </a>
                 </div>
+
+                <!-- Bottom: Button -->
+                <a href="services.html" class="btn btn-primary">Vezi toate serviciile &rarr;</a>
             </div>
         </div>
     </section>
