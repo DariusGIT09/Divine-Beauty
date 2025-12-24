@@ -922,28 +922,36 @@ footer {
     }
 
     .featured-text {
-        text-align: center;
+        text-align: center !important;
         padding-right: 0;
         display: flex;
         flex-direction: column;
         align-items: center;
     }
 
+    .featured-text .section-title {
+        text-align: center;
+        align-self: center;
+    }
+
     .featured-text .luxury-separator-custom {
         margin: 1.5rem auto !important;
         justify-content: center !important;
+        display: flex !important;
+        width: 100%;
+        max-width: 200px;
+        /* Keep the width constraint but center the block */
     }
 
     .featured-text p {
         text-align: center !important;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .featured-text .btn {
-        padding: 0.8rem 1.5rem !important;
-        /* Smaller padding */
-        font-size: 0.8rem !important;
-        max-width: 200px;
-        /* Constrain width */
+        margin: 0 auto;
+        display: inline-block;
     }
 }
 
@@ -1103,5 +1111,46 @@ footer {
 
     .founder-title {
         font-size: 1.8rem;
+    }
+}
+
+/* --- Mobile Alignment Fixes for Split Layouts (Service Pages & About) --- */
+@media (max-width: 768px) {
+    .split-layout {
+        text-align: center;
+    }
+
+    .split-content {
+        align-items: center;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .split-content .section-title {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .split-content p {
+        text-align: center;
+    }
+
+    .split-content ul {
+        text-align: left;
+        /* Keep lists left-aligned for readability, but centered block? */
+        display: inline-block;
+        margin: 0 auto 2rem auto;
+        padding-left: 1.5rem;
+    }
+
+    .split-content .btn {
+        margin: 0 auto;
+    }
+
+    /* Target separators inside split content if any */
+    .split-content .luxury-separator-custom {
+        margin: 1.5rem auto !important;
+        justify-content: center !important;
     }
 }
