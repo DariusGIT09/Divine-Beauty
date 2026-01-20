@@ -15,7 +15,7 @@
     background-repeat: no-repeat;
     background-size: cover;
     /* Fallback image if JS fails or image loads late */
-    background-image: url('../assets/hero-bg.png');
+    background-image: url('../assets/hero-bg.webp');
 }
 
 /* Background Image Element for smoother Parallax control if needed, 
