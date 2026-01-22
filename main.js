@@ -75,6 +75,159 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // ============================================
+    // PREMIUM 10X ENHANCEMENTS
+    // ============================================
+
+    // --- Scroll Reveal Animation ---
+    const revealElements = document.querySelectorAll('.reveal, .reveal-scale, .reveal-left, .reveal-right');
+
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+            }
+        });
+    }, {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    });
+
+    revealElements.forEach(el => revealObserver.observe(el));
+
+    // --- Image Loading with Fade ---
+    const images = document.querySelectorAll('img');
+    images.forEach(img => {
+        if (img.complete) {
+            img.classList.add('loaded');
+        } else {
+            img.addEventListener('load', () => {
+                img.classList.add('loaded');
+            });
+            img.addEventListener('error', () => {
+                img.classList.add('loaded'); // Show anyway on error
+            });
+        }
+    });
+
+    // --- Floating Particles System ---
+    function createParticles() {
+        const container = document.createElement('div');
+        container.className = 'particles-container';
+        document.body.appendChild(container);
+
+        const particleCount = window.innerWidth <= 768 ? 8 : 15;
+
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+
+            // Random positioning and timing
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+
+            // Random size variation
+            const size = 2 + Math.random() * 4;
+            particle.style.width = size + 'px';
+            particle.style.height = size + 'px';
+
+            container.appendChild(particle);
+        }
+    }
+
+    // Only create particles on homepage
+    if (document.body.classList.contains('homepage')) {
+        createParticles();
+    }
+
+    // --- Hero Parallax Effect ---
+    const hero = document.querySelector('.hero');
+    const heroContent = document.querySelector('.hero-content');
+
+    if (hero && heroContent) {
+        window.addEventListener('scroll', () => {
+            const scrolled = window.scrollY;
+            const rate = scrolled * 0.3;
+
+            if (scrolled < window.innerHeight) {
+                heroContent.style.transform = `translateY(${rate}px)`;
+                heroContent.style.opacity = 1 - (scrolled / (window.innerHeight * 0.8));
+            }
+        }, { passive: true });
+    }
+
+    // --- Add reveal classes to elements ---
+    function addRevealClasses() {
+        // Section titles
+        document.querySelectorAll('.section-title').forEach((el, i) => {
+            if (!el.classList.contains('reveal')) {
+                el.classList.add('reveal');
+            }
+        });
+
+        // Feature cards with stagger
+        document.querySelectorAll('.feature-card').forEach((el, i) => {
+            if (!el.classList.contains('reveal')) {
+                el.classList.add('reveal', 'stagger-' + Math.min(i + 1, 5));
+            }
+        });
+
+        // Featured cards with stagger
+        document.querySelectorAll('.featured-card').forEach((el, i) => {
+            if (!el.classList.contains('reveal-scale')) {
+                el.classList.add('reveal-scale', 'stagger-' + Math.min(i + 1, 5));
+            }
+        });
+
+        // Service cards with stagger
+        document.querySelectorAll('.service-card').forEach((el, i) => {
+            if (!el.classList.contains('reveal-scale')) {
+                el.classList.add('reveal-scale', 'stagger-' + Math.min((i % 3) + 1, 5));
+            }
+        });
+
+        // Founder section
+        const founderContent = document.querySelector('.founder-content');
+        const founderImage = document.querySelector('.founder-image-wrapper');
+        if (founderContent && !founderContent.classList.contains('reveal-left')) {
+            founderContent.classList.add('reveal-left');
+        }
+        if (founderImage && !founderImage.classList.contains('reveal-right')) {
+            founderImage.classList.add('reveal-right');
+        }
+
+        // Luxury separators
+        document.querySelectorAll('.luxury-separator-custom').forEach(el => {
+            if (!el.classList.contains('reveal-scale')) {
+                el.classList.add('reveal-scale');
+            }
+        });
+
+        // Paragraphs in sections
+        document.querySelectorAll('.section-desc, .intro p, .founder-text').forEach(el => {
+            if (!el.classList.contains('reveal')) {
+                el.classList.add('reveal');
+            }
+        });
+
+        // Buttons
+        document.querySelectorAll('.featured-services .btn, .founder-section .btn').forEach(el => {
+            if (!el.classList.contains('reveal')) {
+                el.classList.add('reveal');
+            }
+        });
+
+        // Re-observe new elements
+        document.querySelectorAll('.reveal, .reveal-scale, .reveal-left, .reveal-right').forEach(el => {
+            revealObserver.observe(el);
+        });
+    }
+
+    // Add reveal classes after short delay to ensure DOM is ready
+    setTimeout(addRevealClasses, 100);
+
 });
 
 // Contact Form Handling with EmailJS
