@@ -592,39 +592,157 @@ img {
 .split-layout {
     display: flex;
     flex-wrap: wrap;
-    min-height: 60vh;
-    flex-direction: column-reverse;
-    /* Content on bottom on mobile */
+    min-height: auto;
+    flex-direction: column;
+    gap: 0;
 }
 
 @media (min-width: 768px) {
     .split-layout {
         flex-direction: row;
-        /* Side by side on desktop */
+        min-height: 60vh;
+        gap: 0;
     }
 }
 
 .split-content {
     flex: 1;
-    padding: 3rem 1.5rem;
+    padding: 2.5rem 1.5rem;
     background-color: var(--color-bg-white);
     display: flex;
     flex-direction: column;
     justify-content: center;
+    width: 100%;
 }
 
 @media (min-width: 768px) {
     .split-content {
         padding: 5rem;
+        width: auto;
     }
 }
 
 .split-image {
     flex: 1;
-    background-size: cover;
-    background-position: center;
-    min-height: 400px;
+    min-height: 280px;
     width: 100%;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--color-bg-alabaster);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    order: -1;
+    /* Image always appears first on mobile */
+}
+
+@media (min-width: 768px) {
+    .split-image {
+        min-height: 400px;
+        order: 0;
+        /* Reset order on desktop */
+    }
+}
+
+/* For background-image approach - show full image on mobile */
+.split-image[style*="background-image"] {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+/* For img tag approach - recommended */
+.split-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* Mobile-only: Service detail sections as cards */
+@media (max-width: 767px) {
+
+    /* Add spacing between service sections */
+    .split-layout {
+        margin-bottom: 0 !important;
+        background: var(--color-bg-white);
+        border-radius: 0;
+        overflow: hidden;
+        box-shadow: none;
+    }
+
+    /* Full-bleed images on mobile */
+    .split-image {
+        min-height: 320px;
+        width: 100vw;
+        margin-left: calc(-50vw + 50%);
+        margin-right: calc(-50vw + 50%);
+        border-radius: 0;
+    }
+
+    /* Enhanced content padding and styling */
+    .split-content {
+        padding: 2.5rem 1.5rem 3rem;
+        text-align: left;
+    }
+
+    .split-content .section-title {
+        font-size: 1.8rem;
+        margin-bottom: 1.25rem;
+        text-align: left;
+    }
+
+    .split-content p {
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+        font-size: 1rem;
+    }
+
+    .split-content ul {
+        margin-bottom: 2rem;
+    }
+
+    .split-content .btn {
+        width: 100%;
+        text-align: center;
+        padding: 1.25rem 2rem;
+    }
+
+    /* Ensure proper stacking even with flex-direction overrides */
+    .split-layout[style*="row-reverse"] {
+        flex-direction: column !important;
+    }
+
+    .split-layout[style*="row-reverse"] .split-image {
+        order: -1;
+        /* Image still first even in reversed layouts */
+    }
+}
+
+/* Service detail image wrapper - for premium image sections */
+.service-image-wrapper {
+    width: 100%;
+    min-height: 300px;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--color-bg-alabaster);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-soft);
+    border: 1px solid rgba(212, 175, 55, 0.1);
+}
+
+.service-image-wrapper img {
+    width: 100%;
+    height: auto;
+    max-height: 450px;
+    object-fit: contain;
+    transition: transform var(--duration-medium) var(--ease-luxury);
+}
+
+.service-image-wrapper:hover img {
+    transform: scale(1.02);
 }
 
 /* Contact Page */
