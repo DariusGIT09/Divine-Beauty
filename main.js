@@ -1,15 +1,32 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Navbar Scroll Effect
+    // Navbar and Hero Scroll Effects
     const navbar = document.querySelector('.navbar');
+    const hero = document.querySelector('.hero');
+    const heroContent = document.querySelector('.hero-content');
+    let isScrolling = false;
 
     window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
+        if (!isScrolling) {
+            window.requestAnimationFrame(() => {
+                const scrolled = window.scrollY;
+                if (scrolled > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+
+                if (hero && heroContent && scrolled < window.innerHeight) {
+                    const rate = scrolled * 0.3;
+                    heroContent.style.transform = `translateY(${rate}px)`;
+                    heroContent.style.opacity = Math.max(0, 1 - (scrolled / (window.innerHeight * 0.8)));
+                }
+
+                isScrolling = false;
+            });
+            isScrolling = true;
         }
-    });
+    }, { passive: true });
 
     // Mobile Menu Toggle
     const burger = document.querySelector('.burger-menu');
@@ -142,21 +159,7 @@ document.addEventListener('DOMContentLoaded', () => {
         createParticles();
     }
 
-    // --- Hero Parallax Effect ---
-    const hero = document.querySelector('.hero');
-    const heroContent = document.querySelector('.hero-content');
-
-    if (hero && heroContent) {
-        window.addEventListener('scroll', () => {
-            const scrolled = window.scrollY;
-            const rate = scrolled * 0.3;
-
-            if (scrolled < window.innerHeight) {
-                heroContent.style.transform = `translateY(${rate}px)`;
-                heroContent.style.opacity = 1 - (scrolled / (window.innerHeight * 0.8));
-            }
-        }, { passive: true });
-    }
+    // --- Hero Parallax Effect (now handled in the unified scroll listener above) ---
 
     // --- Add reveal classes to elements ---
     function addRevealClasses() {
