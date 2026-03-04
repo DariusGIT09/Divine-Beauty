@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // ============================================
 
     // --- Scroll Reveal Animation ---
-    const revealElements = document.querySelectorAll('.reveal, .reveal-scale, .reveal-left, .reveal-right');
+    const revealElements = document.querySelectorAll('.reveal, .reveal-scale, .reveal-left, .reveal-right, .reveal-chain');
 
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -184,10 +184,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Service cards with stagger
+        // Service cards with chained sequential reveal and long stagger
         document.querySelectorAll('.service-card').forEach((el, i) => {
-            if (!el.classList.contains('reveal-scale')) {
-                el.classList.add('reveal-scale', 'stagger-' + Math.min((i % 3) + 1, 5));
+            if (!el.classList.contains('reveal-chain')) {
+                el.classList.add('reveal-chain', 'stagger-long-' + Math.min((i % 8) + 1, 8));
             }
         });
 
@@ -223,7 +223,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Re-observe new elements
-        document.querySelectorAll('.reveal, .reveal-scale, .reveal-left, .reveal-right').forEach(el => {
+        document.querySelectorAll('.reveal, .reveal-scale, .reveal-left, .reveal-right, .reveal-chain').forEach(el => {
             revealObserver.observe(el);
         });
     }
