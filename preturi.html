@@ -8,188 +8,435 @@
     <title>Prețuri | Divine Beauty by Vanessa Francesca</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Prices Page Specific Styles */
-        .staff-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-            max-width: 1000px;
-            margin: 0 auto;
-            justify-content: center;
-            /* Center items if fewer than grid columns */
+        /* -------------------------------------- */
+        /* PREMIUM LUXURY PRICES TAB DESIGN       */
+        /* -------------------------------------- */
+        
+        body {
+            background-color: var(--color-bg-alabaster);
+            background-image: 
+                radial-gradient(ellipse at top left, rgba(212, 175, 55, 0.05) 0%, transparent 40%),
+                radial-gradient(ellipse at bottom right, rgba(230, 210, 210, 0.1) 0%, transparent 40%);
         }
 
-        .staff-card {
-            background: #fff;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-            transition: transform 0.3s ease;
+        .prices-intro {
             text-align: center;
-            max-width: 350px;
-            /* Limit width */
-            margin: 0 auto;
-            /* Center in grid cell */
-            width: 100%;
+            max-width: 600px;
+            margin: 0 auto 4rem;
         }
 
-        .staff-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .staff-img {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 3/4;
-            /* Force portrait aspect ratio */
-            object-fit: cover;
-            object-position: top;
-        }
-
-        .staff-info {
-            padding: 2rem;
-        }
-
-        .staff-name {
+        .prices-intro p {
+            color: #666;
+            font-size: 1.1rem;
+            line-height: 1.8;
             font-family: var(--font-heading);
-            font-size: 1.5rem;
-            color: var(--color-text-dark);
+            font-style: italic;
+        }
+
+        .premium-prices-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        @media (max-width: 900px) {
+            .premium-prices-wrapper {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* SIDEBAR TABS */
+        .premium-tabs-sidebar {
+            position: sticky;
+            top: 120px;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.02), inset 0 0 0 1px rgba(255,255,255,0.5);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            z-index: 10;
+        }
+
+        @media (max-width: 900px) {
+            .premium-tabs-sidebar {
+                position: relative;
+                top: 0;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                padding: 1rem;
+            }
+        }
+
+        .premium-tab-btn {
+            background: transparent;
+            border: none;
+            padding: 1rem 1.2rem;
+            text-align: left;
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            color: #888;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        @media (max-width: 900px) {
+            .premium-tab-btn {
+                text-align: center;
+                padding: 0.8rem 1rem;
+                font-size: 1rem;
+            }
+        }
+
+        .premium-tab-btn::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 3px;
+            height: 100%;
+            background: var(--color-primary-gold);
+            transform: scaleY(0);
+            transition: transform 0.4s ease;
+            transform-origin: bottom;
+        }
+
+        @media (max-width: 900px) {
+            .premium-tab-btn::before {
+                width: 100%;
+                height: 2px;
+                top: auto;
+                bottom: 0;
+                transform: scaleX(0);
+                transform-origin: right;
+            }
+        }
+
+        .premium-tab-btn:hover {
+            color: var(--color-primary-gold);
+            background: rgba(212, 175, 55, 0.02);
+            transform: translateX(5px);
+        }
+
+        @media (max-width: 900px) {
+            .premium-tab-btn:hover {
+                transform: translateY(-2px);
+            }
+        }
+
+        .premium-tab-btn.active {
+            color: #1a1a1a;
+            font-weight: 600;
+            background: #fff;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+            transform: translateX(10px);
+        }
+
+        @media (max-width: 900px) {
+            .premium-tab-btn.active {
+                transform: translateY(0);
+            }
+        }
+
+        .premium-tab-btn.active::before {
+            transform: scaleY(1);
+            transform-origin: top;
+        }
+
+        @media (max-width: 900px) {
+            .premium-tab-btn.active::before {
+                transform: scaleX(1);
+                transform-origin: left;
+            }
+        }
+
+        /* TAB PANELS */
+        .premium-prices-content {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border-radius: 16px;
+            padding: 3.5rem;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.04), inset 0 0 0 1px rgba(255,255,255,0.6);
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            min-height: 500px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Ambient Glow inside Content */
+        .premium-prices-content::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(212,175,55,0.03) 0%, transparent 60%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        @media (max-width: 600px) {
+            .premium-prices-content {
+                padding: 2rem 1.2rem;
+            }
+        }
+
+        .premium-panel {
+            display: none;
+            position: relative;
+            z-index: 1;
+        }
+
+        .premium-panel.active {
+            display: block;
+            animation: fadeInSlideUp 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        @keyframes fadeInSlideUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.98);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .panel-header {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .panel-header h3 {
+            font-size: 2.5rem;
+            color: #1a1a1a;
+            position: relative;
+            display: inline-block;
+            letter-spacing: 1px;
             margin-bottom: 0.5rem;
         }
 
-        .staff-role {
-            color: var(--color-accent);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
-            display: block;
+        .panel-subtitle {
+            font-size: 1rem;
+            color: #888;
+            font-style: italic;
+            font-family: var(--font-heading);
         }
 
-        /* MODAL STYLES */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.8);
+        .diamond-divider {
+            width: 8px;
+            height: 8px;
+            background: var(--color-primary-gold);
+            transform: rotate(45deg);
+            margin: 1.5rem auto;
+            position: relative;
+        }
+        .diamond-divider::before, .diamond-divider::after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 1px;
+            background: rgba(212,175,55,0.4);
+            top: 4px;
+        }
+        .diamond-divider::before { right: 15px; }
+        .diamond-divider::after { left: 15px; }
+
+
+        .premium-price-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .premium-price-item {
+            display: flex;
+            align-items: flex-end;
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            transition: all 0.4s ease;
+            background: transparent;
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .premium-price-item::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(90deg, rgba(255,255,255,0.8), rgba(255,255,255,0.4));
+            z-index: -1;
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.4s ease;
+            border-radius: 12px;
         }
 
-        .modal.show {
-            display: block;
+        .premium-price-item:hover::before {
             opacity: 1;
         }
 
-        .modal-content {
-            background-color: #fff;
-            margin: 5% auto;
-            padding: 0;
-            border: 1px solid #888;
-            width: 90%;
-            max-width: 800px;
-            border-radius: 12px;
-            position: relative;
-            transform: translateY(-50px);
-            transition: transform 0.3s ease;
-            max-height: 90vh;
-            /* Prevent modal from exceeding screen height */
+        .premium-price-item:hover {
+            transform: translateX(8px) scale(1.01);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+            border: 1px solid rgba(255,255,255,0.8);
+        }
+
+        @media (max-width: 600px) {
+            .premium-price-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+            .premium-price-item:hover {
+                transform: translateY(-3px);
+            }
+        }
+
+        .ppi-info {
+            flex-shrink: 0;
+            padding-right: 20px;
+        }
+
+        .ppi-name {
+            font-size: 1.2rem;
+            color: #111;
+            font-weight: 500;
+            margin: 0;
+            letter-spacing: 0.5px;
+            font-family: var(--font-body);
+        }
+
+        .ppi-desc {
+            font-size: 0.9rem;
+            color: #777;
+            font-style: italic;
+            margin-top: 6px;
+            font-family: 'Playfair Display', serif;
+            opacity: 0.9;
+        }
+
+        .ppi-dots {
+            flex-grow: 1;
+            border-bottom: 2px dotted rgba(212, 175, 55, 0.3);
+            margin: 0 15px 8px 0;
+            transition: border-color 0.3s ease;
+        }
+
+        .premium-price-item:hover .ppi-dots {
+            border-bottom: 2px dotted rgba(212, 175, 55, 0.8);
+        }
+
+        @media (max-width: 600px) {
+            .ppi-dots {
+                display: none;
+            }
+        }
+
+        .ppi-value {
+            flex-shrink: 0;
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--color-primary-gold);
+            background: linear-gradient(135deg, #D4AF37 0%, #AA8C2C 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        @media (max-width: 600px) {
+            .ppi-value {
+                font-size: 1.25rem;
+                align-self: flex-end;
+            }
+        }
+
+        /* SPECIALIST PROFILE IN SIDEBAR */
+        .specialist-profile {
             display: flex;
             flex-direction: column;
-        }
-
-        .modal.show .modal-content {
-            transform: translateY(0);
-        }
-
-        .close-button {
-            color: #aaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            position: absolute;
-            right: 20px;
-            top: 15px;
-            z-index: 10;
-            cursor: pointer;
-            transition: color 0.3s;
-        }
-
-        .close-button:hover,
-        .close-button:focus {
-            color: #000;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .modal-header {
-            padding: 20px;
-            border-bottom: 1px solid #eee;
-            background-color: #f9f9f9;
-            border-radius: 12px 12px 0 0;
+            align-items: center;
             text-align: center;
-        }
-
-        .modal-body {
-            padding: 30px;
-            overflow-y: auto;
-            /* Scroll inside modal if content is long */
-        }
-
-        /* Accordion in Modal Styles (Same as before but adjusted context) */
-        .price-category {
-            margin-bottom: 2rem;
-            background: #fff;
-            padding: 1.5rem;
-            border-radius: 8px;
-            border: 1px solid rgba(212, 175, 55, 0.2);
-        }
-
-        .category-title {
-            font-family: var(--font-heading);
-            color: var(--color-text-dark);
-            font-size: 1.3rem;
-            border-bottom: 1px solid var(--color-accent);
-            padding-bottom: 1rem;
+            padding-bottom: 2rem;
             margin-bottom: 1.5rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            gap: 15px;
         }
-
-        .feature-icon-small {
-            width: 24px;
-            height: 24px;
-            color: var(--color-accent);
+        
+        .specialist-avatar {
+            width: 160px;
+            height: 200px;
+            border-radius: 80px 80px 10px 10px; /* Elegant Arch Shape */
+            object-fit: cover;
+            object-position: top;
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            padding: 6px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.04);
+            background: linear-gradient(180deg, rgba(255,255,255,0.9) 0%, rgba(212,175,55,0.1) 100%);
+            transition: transform 0.6s cubic-bezier(0.165, 0.84, 0.44, 1), box-shadow 0.6s ease;
         }
-
-        .price-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.8rem 0;
-            border-bottom: 1px dashed #eee;
+        
+        .specialist-avatar:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(212, 175, 55, 0.15);
         }
-
-        .price-item:last-child {
-            border-bottom: none;
-        }
-
-        .price-name {
-            font-weight: 500;
-            color: #444;
-        }
-
-        .price-value {
-            font-weight: 700;
-            color: var(--color-accent);
+        
+        .specialist-info h3 {
+            font-size: 1.35rem;
             font-family: var(--font-heading);
+            color: #1a1a1a;
+            margin: 0;
+            line-height: 1.2;
+            letter-spacing: 0.5px;
         }
+
+        .specialist-info p {
+            font-size: 0.75rem;
+            color: var(--color-primary-gold-dim, #B08D2C);
+            margin: 5px 0 0 0;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+
+        @media (max-width: 900px) {
+            .specialist-profile {
+                flex-direction: row;
+                text-align: left;
+                width: 100%;
+                justify-content: flex-start;
+                gap: 20px;
+                padding-bottom: 1.5rem;
+            }
+            .specialist-avatar {
+                width: 80px;
+                height: 100px;
+                border-radius: 40px 40px 8px 8px; /* Scaled down Arch */
+                padding: 4px;
+            }
+            .specialist-info h3 {
+                font-size: 1.2rem;
+            }
+            .specialist-info p {
+                font-size: 0.7rem;
+            }
+        }
+
     </style>
 </head>
 
@@ -232,209 +479,258 @@
                 stroke="url(#goldGradient)" stroke-width="1" />
             <path class="draw-path delay-2" d="M -100 350 C 200 350, 400 100, 600 350 S 1000 600, 1540 350" fill="none"
                 stroke="url(#goldGradient)" stroke-width="0.5" />
-            <path class="draw-path profile-path" d="M 1200 200 Q 1100 300 1200 400 T 1200 600" fill="none"
-                stroke="#D4AF37" stroke-width="1.5" opacity="0.4" />
         </svg>
         <h1 class="page-title text-gold">Lista de Prețuri</h1>
     </div>
 
-    <section id="preturi" class="section-padding">
+    <section id="preturi-premium" class="section-padding">
         <div class="container">
-            <h2 class="section-title text-center">Specialiștii noștri</h2>
-            <div class="luxury-separator-custom">
-                <div class="diamond"></div>
+            <div class="prices-intro">
+                <h2 class="section-title">Serviciile Noastre</h2>
+                <div class="luxury-separator-custom">
+                    <div class="diamond"></div>
+                </div>
+                <p>Descoperă meniul nostru de tratamente premium, concepute special pentru a-ți evidenția frumusețea naturală într-un ambient rafinat și relaxant.</p>
             </div>
 
-            <!-- Staff Grid -->
-            <div class="staff-grid">
-                <!-- Vanessa Card -->
-                <div class="staff-card">
-                    <img src="assets/VanessaFrancesca.webp" alt="Vanessa Francesca" class="staff-img">
-                    <div class="staff-info">
-                        <h3 class="staff-name">Vanessa Francesca</h3>
-                        <span class="staff-role">Founder & Master Cosmetician</span>
-
-                        <button class="btn btn-outline" onclick="openModal('vanessa')">
-                            Vezi Lista de Prețuri
-                        </button>
+            <div class="premium-prices-wrapper">
+                
+                <!-- SIDEBAR -->
+                <div class="premium-tabs-sidebar">
+                    
+                    <!-- STAFF PROFILE HEADER -->
+                    <div class="specialist-profile">
+                        <img src="assets/VanessaFrancesca.webp" alt="Vanessa Francesca" class="specialist-avatar">
+                        <div class="specialist-info">
+                            <h3>Vanessa Francesca</h3>
+                            <p>Founder & Master Cosmetician</p>
+                        </div>
                     </div>
+
+                    <button class="premium-tab-btn active" data-target="panel-micropigmentare">Micropigmentare</button>
+                    <button class="premium-tab-btn" data-target="panel-laminare-sprancene">Laminare Sprâncene</button>
+                    <button class="premium-tab-btn" data-target="panel-laminare-gene">Laminare Gene</button>
+                    <button class="premium-tab-btn" data-target="panel-cicatrici">Dermo. Cicatrici</button>
+                    <button class="premium-tab-btn" data-target="panel-faciale">Tratamente Faciale</button>
+                    <button class="premium-tab-btn" data-target="panel-corporale">Tratamente Corporale</button>
+                </div>
+
+                <!-- CONTENT PANELS -->
+                <div class="premium-prices-content">
+                    
+                    <!-- Panel: Micropigmentare -->
+                    <div class="premium-panel active" id="panel-micropigmentare">
+                        <div class="panel-header">
+                            <h3>Micropigmentare</h3>
+                            <div class="diamond-divider"></div>
+                            <p class="panel-subtitle">Evidențiază-ți trăsăturile cu precizie chirurgicală și artă estetică.</p>
+                        </div>
+                        <div class="premium-price-list">
+                            <div class="premium-price-item">
+                                <div class="ppi-info">
+                                    <h4 class="ppi-name">Powder Brows</h4>
+                                </div>
+                                <div class="ppi-dots"></div>
+                                <div class="ppi-value">1500 lei</div>
+                            </div>
+                            <div class="premium-price-item">
+                                <div class="ppi-info">
+                                    <h4 class="ppi-name">Bold Brows</h4>
+                                </div>
+                                <div class="ppi-dots"></div>
+                                <div class="ppi-value">1400 lei</div>
+                            </div>
+                            <div class="premium-price-item">
+                                <div class="ppi-info">
+                                    <h4 class="ppi-name">Shadow Brows</h4>
+                                </div>
+                                <div class="ppi-dots"></div>
+                                <div class="ppi-value">1300 lei</div>
+                            </div>
+                            <div class="premium-price-item">
+                                <div class="ppi-info">
+                                    <h4 class="ppi-name">Buze</h4>
+                                </div>
+                                <div class="ppi-dots"></div>
+                                <div class="ppi-value">1200 lei</div>
+                            </div>
+                            <div class="premium-price-item">
+                                <div class="ppi-info">
+                                    <h4 class="ppi-name">Eyeliner</h4>
+                                </div>
+                                <div class="ppi-dots"></div>
+                                <div class="ppi-value">900 lei</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Panel: Laminare Sprancene -->
+                    <div class="premium-panel" id="panel-laminare-sprancene">
+                        <div class="panel-header">
+                            <h3>Laminare Sprâncene</h3>
+                            <div class="diamond-divider"></div>
+                            <p class="panel-subtitle">Definire, volum și o privire magnetică în fiecare zi.</p>
+                        </div>
+                        <div class="premium-price-list">
+                            <div class="premium-price-item">
+                                <div class="ppi-info">
+                                    <h4 class="ppi-name">Brow Lift & Design</h4>
+                                    <p class="ppi-desc">✔ laminare ✔ arhitectură personalizată ✔ vopsit profesional</p>
+                                </div>
+                                <div class="ppi-dots"></div>
+                                <div class="ppi-value">260 lei</div>
+                            </div>
+                            <div class="premium-price-item">
+                                <div class="ppi-info">
+                                    <h4 class="ppi-name">Laminare sprâncene</h4>
+                                </div>
+                                <div class="ppi-dots"></div>
+                                <div class="ppi-value">180 lei</div>
+                            </div>
+                            <div class="premium-price-item">
+                                <div class="ppi-info">
+                                    <h4 class="ppi-name">Vopsit & stilizare sprâncene</h4>
+                                </div>
+                                <div class="ppi-dots"></div>
+                                <div class="ppi-value">110 lei</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Panel: Laminare Gene -->
+                    <div class="premium-panel" id="panel-laminare-gene">
+                        <div class="panel-header">
+                            <h3>Laminare Gene</h3>
+                            <div class="diamond-divider"></div>
+                            <p class="panel-subtitle">Gene curbate natural și privire seducătoare, fără machiaj adițional.</p>
+                        </div>
+                        <div class="premium-price-list">
+                            <div class="premium-price-item">
+                                <div class="ppi-info">
+                                    <h4 class="ppi-name">Lash lift</h4>
+                                </div>
+                                <div class="ppi-dots"></div>
+                                <div class="ppi-value">200 lei</div>
+                            </div>
+                            <div class="premium-price-item">
+                                <div class="ppi-info">
+                                    <h4 class="ppi-name">Lash lift & Tint</h4>
+                                </div>
+                                <div class="ppi-dots"></div>
+                                <div class="ppi-value">230 lei</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Panel: Dermopigmentare Cicatrici -->
+                    <div class="premium-panel" id="panel-cicatrici">
+                        <div class="panel-header">
+                            <h3>Dermopigmentare Cicatrici</h3>
+                            <div class="diamond-divider"></div>
+                            <p class="panel-subtitle">Restabilim încrederea prin estomparea vizuală a perfecțiunii pielii.</p>
+                        </div>
+                        <div class="premium-price-list">
+                            <div class="premium-price-item">
+                                <div class="ppi-info">
+                                    <h4 class="ppi-name">Zonă mică</h4>
+                                </div>
+                                <div class="ppi-dots"></div>
+                                <div class="ppi-value">600 lei</div>
+                            </div>
+                            <div class="premium-price-item">
+                                <div class="ppi-info">
+                                    <h4 class="ppi-name">Zonă medie</h4>
+                                </div>
+                                <div class="ppi-dots"></div>
+                                <div class="ppi-value">1000 lei</div>
+                            </div>
+                            <div class="premium-price-item">
+                                <div class="ppi-info">
+                                    <h4 class="ppi-name">Zonă mare</h4>
+                                </div>
+                                <div class="ppi-dots"></div>
+                                <div class="ppi-value">1400 lei</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Panel: Tratamente Faciale -->
+                    <div class="premium-panel" id="panel-faciale">
+                        <div class="panel-header">
+                            <h3>Tratamente Faciale</h3>
+                            <div class="diamond-divider"></div>
+                            <p class="panel-subtitle">Terapiile supreme pentru un ten luminos, întinerit și profund hidratat.</p>
+                        </div>
+                        <div class="premium-price-list">
+                            <div class="premium-price-item">
+                                <div class="ppi-info">
+                                    <h4 class="ppi-name">Biomicroneedling PhiBright</h4>
+                                </div>
+                                <div class="ppi-dots"></div>
+                                <div class="ppi-value">800 lei</div>
+                            </div>
+                            <div class="premium-price-item">
+                                <div class="ppi-info">
+                                    <h4 class="ppi-name">Microneedling PhiBright</h4>
+                                </div>
+                                <div class="ppi-dots"></div>
+                                <div class="ppi-value">650 lei</div>
+                            </div>
+                            <div class="premium-price-item">
+                                <div class="ppi-info">
+                                    <h4 class="ppi-name">Deep clean & Glow</h4>
+                                </div>
+                                <div class="ppi-dots"></div>
+                                <div class="ppi-value">350 lei</div>
+                            </div>
+                            <div class="premium-price-item">
+                                <div class="ppi-info">
+                                    <h4 class="ppi-name">Hydra Glow Infusion</h4>
+                                    <p class="ppi-desc">hidratare profundă, revitalizare și luminozitate</p>
+                                </div>
+                                <div class="ppi-dots"></div>
+                                <div class="ppi-value">350 lei</div>
+                            </div>
+                            <div class="premium-price-item">
+                                <div class="ppi-info">
+                                    <h4 class="ppi-name">Firm & Lift Therapy</h4>
+                                    <p class="ppi-desc">Fermitate și efect de lifting prin radiofrecvență</p>
+                                </div>
+                                <div class="ppi-dots"></div>
+                                <div class="ppi-value">400 lei</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Panel: Tratamente Corporale -->
+                    <div class="premium-panel" id="panel-corporale">
+                        <div class="panel-header">
+                            <h3>Tratamente Corporale</h3>
+                            <div class="diamond-divider"></div>
+                            <p class="panel-subtitle">Remodelare și relaxare absolută pentru o siluetă de invidiat.</p>
+                        </div>
+                        <div class="premium-price-list">
+                            <div class="premium-price-item">
+                                <div class="ppi-info">
+                                    <h4 class="ppi-name">Presoterapie - drenaj limfatic</h4>
+                                </div>
+                                <div class="ppi-dots"></div>
+                                <div class="ppi-value">150 lei</div>
+                            </div>
+                            <div class="premium-price-item">
+                                <div class="ppi-info">
+                                    <h4 class="ppi-name">EMS BODY SCULPT & TONE</h4>
+                                </div>
+                                <div class="ppi-dots"></div>
+                                <div class="ppi-value">150 lei / zona</div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
-
         </div>
     </section>
-
-    <!-- Modal for Vanessa -->
-    <div id="modal-vanessa" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span class="close-button" onclick="closeModal('vanessa')">&times;</span>
-                <h2 style="margin:0; font-family: var(--font-heading); color: var(--color-text-dark);">Lista Prețuri -
-                    Vanessa Francesca</h2>
-            </div>
-            <div class="modal-body">
-
-                <!-- Category 1: Sprancene & Gene -->
-                <div class="price-category">
-                    <h3 class="category-title">
-                        <svg class="feature-icon-small" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z" />
-                            <circle cx="12" cy="12" r="3" />
-                        </svg>
-                        Sprâncene & Gene
-                    </h3>
-                    <div class="price-item">
-                        <span class="price-name">Stilizare Sprâncene (Formă + Vopsit)</span>
-                        <span class="price-value">100 RON</span>
-                    </div>
-                    <div class="price-item">
-                        <span class="price-name">Laminare Sprâncene</span>
-                        <span class="price-value">200 RON</span>
-                    </div>
-                    <div class="price-item">
-                        <span class="price-name">Laminare Gene</span>
-                        <span class="price-value">180 RON</span>
-                    </div>
-                </div>
-
-                <!-- Category 2: Micropigmentare -->
-                <div class="price-category">
-                    <h3 class="category-title">
-                        <svg class="feature-icon-small" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-                        </svg>
-                        Micropigmentare
-                    </h3>
-                    <div class="price-item">
-                        <span class="price-name">Micropigmentare Sprâncene (Powder)</span>
-                        <span class="price-value">1200 RON</span>
-                    </div>
-                    <div class="price-item">
-                        <span class="price-name">Micropigmentare Buze (Aquarelle)</span>
-                        <span class="price-value">1300 RON</span>
-                    </div>
-                    <div class="price-item">
-                        <span class="price-name">Retuș (după 1 lună)</span>
-                        <span class="price-value">300 RON</span>
-                    </div>
-                    <div class="price-item">
-                        <span class="price-name">PhiRemoval (Ședință)</span>
-                        <span class="price-value">400 RON</span>
-                    </div>
-                </div>
-
-                <!-- Category 3: Tratamente Faciale -->
-                <div class="price-category">
-                    <h3 class="category-title">
-                        <svg class="feature-icon-small" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <circle cx="12" cy="12" r="10" />
-                            <path d="M8 14s1.5 2 4 2 4-2 4-2" />
-                            <line x1="9" y1="9" x2="9.01" y2="9" />
-                            <line x1="15" y1="9" x2="15.01" y2="9" />
-                        </svg>
-                        Tratamente Faciale
-                    </h3>
-                    <div class="price-item">
-                        <span class="price-name">Curățare Profundă (Hydrafacial)</span>
-                        <span class="price-value">350 RON</span>
-                    </div>
-                    <div class="price-item">
-                        <span class="price-name">Microneedling (Dermapen)</span>
-                        <span class="price-value">450 RON</span>
-                    </div>
-                    <div class="price-item">
-                        <span class="price-name">Peeling Chimic</span>
-                        <span class="price-value">300 RON</span>
-                    </div>
-                </div>
-
-                <!-- Category 4: Coafor -->
-                <div class="price-category">
-                    <h3 class="category-title">
-                        <svg class="feature-icon-small" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <path d="M12 2a5 5 0 0 0-5 5v2a5 5 0 0 0 10 0V7a5 5 0 0 0-5-5Z" />
-                            <path d="M4 14v7" />
-                            <path d="M20 14v7" />
-                            <path d="M8 12h8" />
-                            <path d="M9 16h6" />
-                        </svg>
-                        Coafor
-                    </h3>
-                    <div class="price-item">
-                        <span class="price-name">Tuns Damă (Spălat + Coafat)</span>
-                        <span class="price-value">150 RON</span>
-                    </div>
-                    <div class="price-item">
-                        <span class="price-name">Vopsit Rădăcină</span>
-                        <span class="price-value">200 RON</span>
-                    </div>
-                    <div class="price-item">
-                        <span class="price-name">Vopsit Total (Păr Mediu)</span>
-                        <span class="price-value">350 RON</span>
-                    </div>
-                    <div class="price-item">
-                        <span class="price-name">Coafat Ocazie</span>
-                        <span class="price-value">250 RON</span>
-                    </div>
-                </div>
-
-                <!-- Category 5: Make-up -->
-                <div class="price-category">
-                    <h3 class="category-title">
-                        <svg class="feature-icon-small" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <path d="m19 13 1-1h-5v2h5l-1-1z" />
-                            <path d="m9 22 3-9" />
-                            <path d="m15 22-3-9" />
-                            <path d="M22 2 11 13" />
-                            <circle cx="16.5" cy="7.5" r=".5" />
-                        </svg>
-                        Make-up
-                    </h3>
-                    <div class="price-item">
-                        <span class="price-name">Make-up De Zi / Natural</span>
-                        <span class="price-value">250 RON</span>
-                    </div>
-                    <div class="price-item">
-                        <span class="price-name">Make-up De Seară</span>
-                        <span class="price-value">350 RON</span>
-                    </div>
-                    <div class="price-item">
-                        <span class="price-name">Make-up Mireasă</span>
-                        <span class="price-value">450 RON</span>
-                    </div>
-                </div>
-                <!-- Category 6: Corporale -->
-                <div class="price-category">
-                    <h3 class="category-title">
-                        <svg class="feature-icon-small" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="2">
-                            <path
-                                d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
-                        </svg>
-                        Tratamente Corporale
-                    </h3>
-                    <div class="price-item">
-                        <span class="price-name">Radiofrecvență (30 min)</span>
-                        <span class="price-value">150 RON</span>
-                    </div>
-                    <div class="price-item">
-                        <span class="price-name">Cavitație (40 min)</span>
-                        <span class="price-value">180 RON</span>
-                    </div>
-                    <div class="price-item">
-                        <span class="price-name">Împachetare Anticelulitică</span>
-                        <span class="price-value">120 RON</span>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
 
     <footer>
         <div class="container">
@@ -442,8 +738,7 @@
                 <div class="footer-col footer-about">
                     <img src="assets/Vanessa-logo.webp" alt="Vanessa Francesca Logo"
                         style="height: 100px; margin-bottom: 1.5rem;">
-                    <p>Redefinim standardele frumuseții prin precizie, artă și o atmosferă serenă. Sanctuarul tău de
-                        relaxare și eleganță.</p>
+                    <p>Redefinim standardele frumuseții prin precizie, artă și o atmosferă serenă. Sanctuarul tău de relaxare și eleganță.</p>
                 </div>
                 <div class="footer-col">
                     <h4>Link-uri Rapide</h4>
@@ -474,18 +769,8 @@
                         <li>contact@divinebeauty.ro</li>
                     </ul>
                     <div class="footer-social">
-                        <a href="#" class="social-icon"><svg viewBox="0 0 24 24" width="18" height="18"
-                                stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-                            </svg></a>
-                        <a href="#" class="social-icon"><svg viewBox="0 0 24 24" width="18" height="18"
-                                stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round">
-                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-                            </svg></a>
+                        <a href="#" class="social-icon"><svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a>
+                        <a href="#" class="social-icon"><svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg></a>
                     </div>
                 </div>
             </div>
@@ -506,44 +791,28 @@
 
     <script src="main.js"></script>
     <script>
-        // Modal Logic
-        function openModal(staffId) {
-            const modal = document.getElementById('modal-' + staffId);
-            if (modal) {
-                modal.style.display = "block";
-                setTimeout(() => {
-                    modal.classList.add('show');
-                }, 10);
-                document.body.style.overflow = 'hidden'; // Disable background scroll
-            }
-        }
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabs = document.querySelectorAll('.premium-tab-btn');
+            const panels = document.querySelectorAll('.premium-panel');
 
-        function closeModal(staffId) {
-            const modal = document.getElementById('modal-' + staffId);
-            if (modal) {
-                modal.classList.remove('show');
-                setTimeout(() => {
-                    modal.style.display = "none";
-                }, 300);
-                document.body.style.overflow = ''; // Enable background scroll
-            }
-        }
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Remove active from all
+                    tabs.forEach(t => t.classList.remove('active'));
+                    panels.forEach(p => p.classList.remove('active'));
 
-        // Close modal when clicking outside
-        window.onclick = function (event) {
-            if (event.target.classList.contains('modal')) {
-                const modals = document.querySelectorAll('.modal');
-                modals.forEach(modal => {
-                    if (modal.style.display === 'block') {
-                        modal.classList.remove('show');
-                        setTimeout(() => {
-                            modal.style.display = "none";
-                        }, 300);
-                        document.body.style.overflow = '';
+                    // Add active to clicked tab
+                    tab.classList.add('active');
+                    
+                    // Show corresponding panel
+                    const targetId = tab.getAttribute('data-target');
+                    const targetPanel = document.getElementById(targetId);
+                    if (targetPanel) {
+                        targetPanel.classList.add('active');
                     }
                 });
-            }
-        }
+            });
+        });
     </script>
 </body>
 
