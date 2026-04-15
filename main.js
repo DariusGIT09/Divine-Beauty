@@ -284,3 +284,59 @@ if (contactForm) {
             });
     });
 };
+
+// Card Stack Interactive Logic for Gallery
+document.addEventListener('DOMContentLoaded', () => {
+    const stackContainer = document.getElementById('results-card-stack');
+    if (!stackContainer) return;
+
+    const cards = Array.from(stackContainer.querySelectorAll('.stack-card'));
+    if (cards.length === 0) return;
+
+    let currentIndex = 0;
+    
+    function updateStack() {
+        cards.forEach((card, index) => {
+            let pos = (index - currentIndex + cards.length) % cards.length;
+            
+            if (pos < 4) {
+                // Top cards visible (up to 4)
+                card.style.opacity = 1 - (pos * 0.15);
+                card.style.zIndex = cards.length - pos;
+                // Add a subtle alternating tilt
+                const tilt = pos === 0 ? 0 : (pos % 2 === 0 ? pos * 1.5 : -pos * 1.5);
+                card.style.transform = `translateY(${pos * 25}px) scale(${1 - pos * 0.06}) rotate(${tilt}deg)`;
+                card.style.pointerEvents = pos === 0 ? 'auto' : 'none';
+            } else {
+                // Hidden cards pushed to bottom
+                card.style.opacity = 0;
+                card.style.zIndex = 0;
+                card.style.transform = `translateY(80px) scale(0.8)`;
+                card.style.pointerEvents = 'none';
+            }
+        });
+    }
+
+    function slideNext() {
+        const frontCard = cards[currentIndex];
+        // Animate the front card flying away up and slightly skewed
+        frontCard.style.transform = `translateY(-80px) scale(1.05) rotate(5deg)`;
+        frontCard.style.opacity = 0;
+        
+        setTimeout(() => {
+            currentIndex = (currentIndex + 1) % cards.length;
+            updateStack();
+        }, 400); // 400ms buffer allows the exit transition to finish gracefully
+    }
+    
+    updateStack();
+    
+    stackContainer.addEventListener('click', () => {
+        slideNext();
+        // Reset timer when manually tapped
+        clearInterval(autoPlay);
+        autoPlay = setInterval(slideNext, 3800);
+    });
+    
+    let autoPlay = setInterval(slideNext, 3800);
+});

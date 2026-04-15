@@ -28,7 +28,7 @@
                 <a href="index.html">Prima Pagină</a>
                 <a href="services.html">Servicii</a>
                 <a href="despre-noi.html">Despre Noi</a>
-                <a href="#">Galerie</a>
+                <a href="galerie.html">Galerie</a>
                 <a href="preturi.html">Prețuri</a>
                 <a href="contact.html">Contact</a>
             </div>
@@ -43,87 +43,107 @@
     <!-- Invisible spacer for fixed nav -->
     <div style="height: 80px;"></div>
 
-    <div class="container">
-        <div id="contact" class="contact-grid">
-            <div class="contact-info" style="position: relative; overflow: hidden;">
-                <!-- Animated SVG Background -->
-                <svg class="hero-bg-svg" viewBox="0 0 1440 900" xmlns="http://www.w3.org/2000/svg"
-                    preserveAspectRatio="xMidYMid slice" style="z-index: 1;">
-                    <defs>
-                        <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#D4AF37;stop-opacity:0.3" />
-                            <stop offset="100%" style="stop-color:#FDFBF7;stop-opacity:0.1" />
-                        </linearGradient>
-                    </defs>
-                    <path class="draw-path" d="M -100 450 C 200 450, 400 200, 600 450 S 1000 700, 1540 450" fill="none"
-                        stroke="url(#goldGradient)" stroke-width="1.5" />
-                    <path class="draw-path delay-1" d="M -100 550 C 200 550, 400 300, 600 550 S 1000 800, 1540 550"
-                        fill="none" stroke="url(#goldGradient)" stroke-width="1" />
-                    <path class="draw-path delay-2" d="M -100 350 C 200 350, 400 100, 600 350 S 1000 600, 1540 350"
-                        fill="none" stroke="url(#goldGradient)" stroke-width="0.5" />
-                    <path class="draw-path profile-path" d="M 1200 200 Q 1100 300 1200 400 T 1200 600" fill="none"
-                        stroke="#D4AF37" stroke-width="1.5" opacity="0.4" />
-                </svg>
+    <section class="section-padding ambient-glow-bg" style="position: relative; overflow-x: clip; margin-top: 2rem;">
+        <div class="container">
+            <!-- Decorative Background Element -->
+            <div style="position: absolute; right: -5%; top: 15%; font-family: var(--font-heading); font-size: 20rem; color: rgba(212,175,55,0.04); z-index: 0; line-height: 1; user-select: none;">Contact</div>
+            
+            <div id="contact" class="founder-layout"
+                style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 4rem; align-items: start; position: relative; z-index: 2;">
 
-                <div style="position: relative; z-index: 2;">
-                    <h1 class="hero-title text-gold" style="font-size: 3rem;">Contact</h1>
-                    <p style="margin-bottom: 2rem;">Suntem aici pentru a-ți răspunde la orice întrebare.</p>
+            <!-- Contact Info Panel (Left) -->
+            <div class="contact-info glass-panel"
+                style="padding: 3.5rem; position: relative; overflow: hidden; border-radius: 20px;">
+                <h1 class="hero-title" style="font-size: 3.5rem; line-height: 1.1; margin-bottom: 0.5rem;">Contact</h1>
+                <h3
+                    style="font-family: var(--font-body); font-weight: 400; font-size: 0.9rem; letter-spacing: 4px; text-transform: uppercase; color: var(--color-primary-gold);">
+                    Pășește în Sanctuarul Nostru</h3>
 
-                    <div style="margin-bottom: 2rem;">
-                        <strong>Telefon:</strong><br>
-                        <span style="font-size: 1.2rem; font-family: var(--font-heading);">+40 770 496 623</span>
+                <div class="diamond-divider" style="margin: 2rem 0; justify-content: flex-start;"></div>
+
+                <p class="editorial-text"
+                    style="margin-bottom: 3rem; font-size: 1.1rem; color: var(--color-text-charcoal);">Suntem aici
+                    pentru a-ți răspunde la orice întrebare și a te pregăti pentru următoarea ta experiență premium.</p>
+
+                <div style="margin-bottom: 2rem; display: flex; gap: 1.5rem; align-items: center;">
+                    <div
+                        style="width: 50px; height: 50px; border-radius: 50%; background: var(--color-primary-gold-dim); display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 4px 10px rgba(212,175,55,0.3);">
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="#fff" fill="none" stroke-width="2">
+                            <path
+                                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
+                            </path>
+                        </svg>
                     </div>
-
-                    <div style="margin-bottom: 2rem;">
-                        <strong>Adresă:</strong><br>
-                        <span>Str. Eugen Ionesco, nr. 69, Cluj-Napoca</span>
-                    </div>
-
-                    <div class="map-wrapper">
-                        <iframe
-                            src="https://maps.google.com/maps?q=Str.+Eugen+Ionesco,+nr.+69,+Cluj-Napoca&output=embed"
-                            width="100%" height="100%" frameborder="0" style="border:0;" allowfullscreen=""
-                            loading="lazy">
-                        </iframe>
+                    <div>
+                        <strong
+                            style="color: var(--color-primary-gold); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px;">Telefon</strong><br>
+                        <span style="font-size: 1.25rem; font-family: var(--font-heading); color: #111;">+40 770 496
+                            623</span>
                     </div>
                 </div>
+
+                <div style="margin-bottom: 2rem; display: flex; gap: 1.5rem; align-items: center;">
+                    <div
+                        style="width: 50px; height: 50px; border-radius: 50%; background: var(--color-primary-gold-dim); display: flex; align-items: center; justify-content: center; flex-shrink: 0; box-shadow: 0 4px 10px rgba(212,175,55,0.3);">
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="#fff" fill="none" stroke-width="2">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                    </div>
+                    <div>
+                        <strong
+                            style="color: var(--color-primary-gold); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px;">Adresă</strong><br>
+                        <span style="font-size: 1rem; color: #111;">Str. Eugen Ionesco, nr. 69, Cluj-Napoca</span>
+                    </div>
+                </div>
+
             </div>
 
-            <div class="contact-form-wrapper">
-                <form id="contact-form" style="width: 100%; max-width: 400px;">
-                    <h2 class="section-title">Scrie-ne</h2>
+            <!-- Contact Form Panel (Right) -->
+            <div class="contact-form-wrapper glass-panel" style="padding: 3.5rem; border-radius: 20px;">
+                <form id="contact-form" style="width: 100%;">
+                    <h2 class="section-title" style="font-size: 2.5rem; margin-bottom: 2.5rem;">Trimite un Mesaj</h2>
                     <input type="hidden" name="contact_number">
 
-                    <div class="form-group">
-                        <label for="user_name" style="margin-bottom: 0.5rem; display: block;">Nume</label>
-                        <input type="text" class="form-control" name="user_name" id="user_name" placeholder="Numele tău"
-                            required>
+
+
+                    <div class="form-group" style="margin-bottom: 1.8rem;">
+                        <label for="user_name" class="premium-label">Numele tău complet</label>
+                        <input type="text" class="premium-input form-control" name="user_name" id="user_name"
+                            placeholder="ex. Maria Popescu" required>
                     </div>
 
-                    <div class="form-group">
-                        <label for="user_email" style="margin-bottom: 0.5rem; display: block;">Email</label>
-                        <input type="email" class="form-control" name="user_email" id="user_email" placeholder="Email"
-                            required>
+                    <div class="form-group" style="margin-bottom: 1.8rem;">
+                        <label for="user_email" class="premium-label">Adresa de Email</label>
+                        <input type="email" class="premium-input form-control" name="user_email" id="user_email"
+                            placeholder="contact@exemplu.ro" required>
                     </div>
 
-                    <div class="form-group">
-                        <label for="phone" style="margin-bottom: 0.5rem; display: block;">Telefon</label>
-                        <input type="tel" class="form-control" name="phone" id="phone" placeholder="Telefon">
+                    <div class="form-group" style="margin-bottom: 1.8rem;">
+                        <label for="phone" class="premium-label">Număr de Telefon</label>
+                        <input type="tel" class="premium-input form-control" name="phone" id="phone"
+                            placeholder="ex. 07xx xxx xxx">
                     </div>
 
-                    <div class="form-group">
-                        <label for="message" style="margin-bottom: 0.5rem; display: block;">Mesaj</label>
-                        <textarea class="form-control" name="message" id="message" rows="4" placeholder="Mesajul tău"
-                            required></textarea>
+                    <div class="form-group" style="margin-bottom: 2.5rem;">
+                        <label for="message" class="premium-label">Cu ce te putem ajuta?</label>
+                        <textarea class="premium-input form-control" name="message" id="message" rows="5"
+                            placeholder="Scrie-ne dorințele tale..." required style="resize: vertical;"></textarea>
                     </div>
 
                     <div id="form-status" style="margin-bottom: 1rem; display: none;"></div>
 
-                    <button type="submit" class="btn btn-primary">Trimite Mesajul</button>
+                    <button type="submit" class="btn btn-primary pulse-glow hover-lift"
+                        style="width: 100%; padding: 1.2rem; border-radius: 30px; letter-spacing: 3px; font-weight: 600; text-transform: uppercase; border: none; font-size: 0.9rem;">Trimite
+                        Cererea &rarr;</button>
                 </form>
             </div>
         </div>
-    </div>
+        </div>
+    </section>
+
+    <!-- Full Width Panoramic Interwoven Map -->
+    <iframe class="map-panoramic" style="margin-top: 6rem;" src="https://maps.google.com/maps?q=Str.+Eugen+Ionesco,+nr.+69,+Cluj-Napoca&z=16&output=embed" frameborder="0" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
 
     <!-- WhatsApp Floating Button -->
     <a href="https://wa.me/40770496623" class="whatsapp-float" target="_blank" rel="noopener noreferrer"
@@ -154,7 +174,7 @@
                     <li><a href="index.html">Prima Pagină</a></li>
                     <li><a href="services.html">Servicii</a></li>
                     <li><a href="despre-noi.html">Despre Noi</a></li>
-                    <li><a href="#">Galerie</a></li>
+                    <li><a href="galerie.html">Galerie</a></li>
                     <li><a href="contact.html">Contact</a></li>
                 </ul>
             </div>
@@ -185,7 +205,7 @@
                             stroke-linejoin="round">
                             <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
                         </svg></a>
-                    <a href="#" class="social-icon"><svg viewBox="0 0 24 24" width="18" height="18"
+                    <a href="https://www.instagram.com/vanessafrancesca.beauty?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" class="social-icon"><svg viewBox="0 0 24 24" width="18" height="18"
                             stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round"
                             stroke-linejoin="round">
                             <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>

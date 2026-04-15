@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ro">
 
 <head>
@@ -20,7 +20,7 @@
                 <a href="index.html">Prima Pagină</a>
                 <a href="services.html">Servicii</a>
                 <a href="despre-noi.html">Despre Noi</a>
-                <a href="#">Galerie</a>
+                <a href="galerie.html">Galerie</a>
                 <a href="preturi.html">Prețuri</a>
                 <a href="contact.html">Contact</a>
             </div>
@@ -54,18 +54,13 @@
         <h1 class="page-title">Serviciile Noastre</h1>
     </div>
 
-    <section class="intro section-padding" style="padding-bottom: 0;">
+    <section class="intro section-padding" style="padding-bottom: 0; background-color: var(--color-bg-white);">
         <div class="container">
-            <p class="section-desc"
-                style="max-width: 1200px; margin: 0 auto; line-height: 1.8; color: #555; text-align: center; font-size: 1.1rem;">
-                Divine Beauty este destinația ta completă pentru excelență în estetică. Definirea impecabilă a
-                privirii prin servicii de stilizare a sprâncenelor, genelor și PMU. Până la revitalizarea tenului cu
-                Tratamente Faciale de ultimă generație, suntem dedicați frumuseții tale absolute. Redefinește-ți forma
-                și stilul prin tratamente de remodelare corporală atent personalizate si completeaza-ti look-ul prin
-                serviciile de manichiură & pedichiură, coafor sau machiaj profesional, create special pentru
-                evenimentele importante din viața ta.
-                La Divine Beauty, fiecare detaliu este gândit pentru ca tu să te simți încrezătoare, elegantă și
-                pregătită să trăiești fiecare zi intr-un mod fabulos.
+            <h2 class="section-title text-center" style="font-size: 3rem;">O nouă perspectivă asupra îngrijirii</h2>
+            <div class="diamond-divider" style="margin-bottom: 3rem;"></div>
+            <p class="section-desc editorial-text text-center"
+                style="max-width: 900px; margin: 0 auto; line-height: 2; font-size: 1.2rem;">
+                <span style="font-size: 1.5rem; color: var(--color-primary-gold); font-style: italic;">Divine Beauty</span> este destinația ta completă pentru excelență în estetică. De la definirea impecabilă a privirii prin servicii de stilizare a sprâncenelor, genelor și PMU, până la revitalizarea tenului cu Tratamente Faciale de ultimă generație, suntem dedicați frumuseții tale absolute. Redefinește-ți forma și stilul prin tratamente de remodelare corporală atent personalizate și completează-ți look-ul prin serviciile de manichiură, coafor sau machiaj profesional. Aici, fiecare detaliu este gândit pentru ca tu să te simți încrezătoare, elegantă și pregătită să radiezi.
             </p>
         </div>
     </section>
@@ -73,106 +68,150 @@
     <div class="luxury-separator-custom">
         <div class="diamond"></div>
     </div>
-    <section id="servicii" class="section-padding">
+    <section id="servicii" class="section-padding ambient-glow-bg">
         <div class="container">
-            <div class="services-hub-grid">
-
-                <!-- Service 1: Sprancene & Gene -->
-                <div class="service-card" onclick="window.location.href='pages/sprancene.html'">
-                    <img src="assets/public/Sprancene&Gene/sideview-young-woman-lying-lashes-enlarging.webp"
-                        class="service-card-img img-primary visible" alt="Sprancene">
-                    <img src="assets/public/Sprancene&Gene/laminare-sprancene.webp"
-                        class="service-card-img img-secondary hidden" alt="Sprancene Detail">
-                    <div class="service-content">
-                        <h3 class="service-title">Sprâncene & Gene</h3>
-                        <div class="service-link">Vezi Detalii &rarr;</div>
-                    </div>
+            <!-- Service 1: Sprancene -->
+            <div class="editorial-service-row">
+                <div class="editorial-service-image hover-lift">
+                    <img src="assets/public/Sprancene&Gene/sideview-young-woman-lying-lashes-enlarging.webp" alt="Sprâncene & Gene">
                 </div>
-
-                <!-- Service 2: Tratamente Faciale -->
-                <div class="service-card" onclick="window.location.href='pages/faciale.html'">
-                    <img src="assets/public/TratamenteFaciale/cosmetologist-cleaning-face-woman-beauty-salon.webp"
-                        class="service-card-img img-primary visible" alt="Faciale">
-                    <img src="assets/public/TratamenteFaciale/female-client-having-fractional-mesotherapy-beauty-salon.webp"
-                        class="service-card-img img-secondary hidden" alt="Faciale Detail">
-                    <div class="service-content">
-                        <h3 class="service-title">Tratamente Faciale</h3>
-                        <div class="service-link">Vezi Detalii &rarr;</div>
-                    </div>
+                <div class="editorial-service-content">
+                    <h3 style="font-family: var(--font-body); font-weight: 400; font-size: 0.85rem; letter-spacing: 4px; text-transform: uppercase; color: var(--color-primary-gold); margin-bottom: 1rem;">Arta Detaliului Perfect</h3>
+                    <h2 class="editorial-row-title">Sprâncene & Gene</h2>
+                    <p class="editorial-row-desc">
+                        Oferim tehnici excepționale de stilizare, laminare și PMU care îți scot în evidență trăsăturile naturale. Serviciile noastre sunt menite să îți transforme privirea, oferindu-i expresivitate și un plus subtil de volum, totul printr-o abordare minim invazivă și de calitate premium.
+                    </p>
+                    <a href="pages/sprancene.html" class="editorial-service-link">
+                        Descoperă Detalii 
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
                 </div>
+            </div>
 
-                <!-- Service 3: Micropigmentare -->
-                <div class="service-card" onclick="window.location.href='pages/micropigmentare.html'">
-                    <img src="assets/public/Micropigmentare/Micromigmentare1.webp"
-                        class="service-card-img img-primary visible" alt="Micropigmentare">
-                    <img src="assets/public/Micropigmentare/Micromigmentare2.webp"
-                        class="service-card-img img-secondary hidden" alt="Micropigmentare Detail">
-                    <div class="service-content">
-                        <h3 class="service-title">Micropigmentare</h3>
-                        <div class="service-link">Vezi Detalii &rarr;</div>
-                    </div>
+            <!-- Service 2: Faciale -->
+            <div class="editorial-service-row reverse">
+                <div class="editorial-service-image hover-lift">
+                    <img src="assets/public/TratamenteFaciale/cosmetologist-cleaning-face-woman-beauty-salon.webp" alt="Tratamente Faciale">
                 </div>
-
-                <!-- Service 4: PhiRemoval -->
-                <div class="service-card" onclick="window.location.href='pages/phiremoval.html'">
-                    <img src="assets/public/Phiremoval/phiremoval.webp" class="service-card-img img-primary visible"
-                        alt="Phiremoval">
-                    <img src="assets/public/Phiremoval/phi.webp" class="service-card-img img-secondary hidden"
-                        alt="Phiremoval Detail">
-                    <div class="service-content">
-                        <h3 class="service-title">PhiRemoval</h3>
-                        <div class="service-link">Vezi Detalii &rarr;</div>
-                    </div>
+                <div class="editorial-service-content">
+                    <h3 style="font-family: var(--font-body); font-weight: 400; font-size: 0.85rem; letter-spacing: 4px; text-transform: uppercase; color: var(--color-primary-gold); margin-bottom: 1rem;">Revitalizare Profundă</h3>
+                    <h2 class="editorial-row-title">Tratamente Faciale</h2>
+                    <p class="editorial-row-desc">
+                        Lasă-ți tenul să respire cu protocoalele noastre de curățare profundă, infuzie de hidratare și mezoterapie facționată. Folosind produse inovatoare de la academii de prestigiu internațional, readucem echilibrul și luminozitatea naturală a pielii tale încă de la prima sesiune.
+                    </p>
+                    <a href="pages/faciale.html" class="editorial-service-link">
+                        Descoperă Detalii 
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
                 </div>
+            </div>
 
-                <!-- Service 5: Manichiura & Pedichiura -->
-                <div class="service-card" onclick="window.location.href='pages/manichiura.html'">
-                    <img src="assets/public/Manichiura&Pedichiura/front-view-healthy-beautiful-manicure.webp"
-                        class="service-card-img img-primary visible" alt="Manichiura">
-                    <img src="assets/public/Manichiura&Pedichiura/soft-gentle-photo-woman-hand-with-big-ring-red-manicure-hold-cute-little-pink-dried-flowers-white.webp"
-                        class="service-card-img img-secondary hidden" alt="Manichiura Detail">
-                    <div class="service-content">
-                        <h3 class="service-title">Manichiură & Pedichiură</h3>
-                        <div class="service-link">Vezi Detalii &rarr;</div>
-                    </div>
+            <!-- Service 3: Micropigmentare -->
+            <div class="editorial-service-row">
+                <div class="editorial-service-image hover-lift">
+                    <img src="assets/public/Micropigmentare/Micromigmentare1.webp" alt="Micropigmentare">
                 </div>
-
-                <!-- Service 6: Coafor -->
-                <div class="service-card" onclick="window.location.href='pages/coafor.html'">
-                    <img src="assets/public/Coafor&Makeup/Coafor1.webp" class="service-card-img img-primary visible"
-                        alt="Coafor">
-                    <img src="assets/public/Coafor&Makeup/Coafor4.webp" class="service-card-img img-secondary hidden"
-                        alt="Coafor Detail">
-                    <div class="service-content">
-                        <h3 class="service-title">Coafor</h3>
-                        <div class="service-link">Vezi Detalii &rarr;</div>
-                    </div>
+                <div class="editorial-service-content">
+                    <h3 style="font-family: var(--font-body); font-weight: 400; font-size: 0.85rem; letter-spacing: 4px; text-transform: uppercase; color: var(--color-primary-gold); margin-bottom: 1rem;">Precizie și Simetrie</h3>
+                    <h2 class="editorial-row-title">Micropigmentare</h2>
+                    <p class="editorial-row-desc">
+                        Alege siguranța unui rezultat natural pe termen lung. Realizăm micropigmentare estetică folosind tehnicile consacrate de la PhiAcademy (Bold Brows, Powder Brows), aducând volum, nuanță și definire sprâncenelor sau buzelor, complet adaptat structurii tale osoase.
+                    </p>
+                    <a href="pages/micropigmentare.html" class="editorial-service-link">
+                        Descoperă Detalii 
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
                 </div>
+            </div>
 
-                <!-- Service 7: Make-up -->
-                <div class="service-card" onclick="window.location.href='pages/makeup.html'">
-                    <img src="assets/public/Coafor&Makeup/Makeup1.webp" class="service-card-img img-primary visible"
-                        alt="Make-up">
-                    <img src="assets/public/Coafor&Makeup/Makeup2.webp" class="service-card-img img-secondary hidden"
-                        alt="Make-up Detail">
-                    <div class="service-content">
-                        <h3 class="service-title">Make-up professional</h3>
-                        <div class="service-link">Vezi Detalii &rarr;</div>
-                    </div>
+            <!-- Service 4: Phiremoval -->
+            <div class="editorial-service-row reverse">
+                <div class="editorial-service-image hover-lift">
+                    <img src="assets/public/Phiremoval/phiremoval.webp" alt="PhiRemoval">
                 </div>
-
-                <!-- Service 8: Tratamente Corporale -->
-                <div class="service-card" onclick="window.location.href='pages/corporale.html'">
-                    <img src="assets/public/Corporale/woman-cosmetology-studio-laser-hair-removal.webp"
-                        class="service-card-img img-primary visible" alt="Corporale">
-                    <img src="assets/public/PozeSalon/SnapInsta.to_583523688_17885402109406774_4071358743004246737_n.webp"
-                        class="service-card-img img-secondary hidden" alt="Corporale Detail">
-                    <div class="service-content">
-                        <h3 class="service-title">Tratamente corporale</h3>
-                        <div class="service-link">Vezi Detalii &rarr;</div>
-                    </div>
+                <div class="editorial-service-content">
+                    <h3 style="font-family: var(--font-body); font-weight: 400; font-size: 0.85rem; letter-spacing: 4px; text-transform: uppercase; color: var(--color-primary-gold); margin-bottom: 1rem;">Corecție Fără Cicatrici</h3>
+                    <h2 class="editorial-row-title">PhiRemoval</h2>
+                    <p class="editorial-row-desc">
+                        Soluția perfectă pentru îndepărtarea tatuajelor cosmetice vechi sau nedorite. Protocolul nostru sigur extrage progresiv pigmentul din derm, protejând foliculii și sănătatea pielii. Un tratament dedicat "ștergerii" sigure și restartării corecte a esteticii tale.
+                    </p>
+                    <a href="pages/phiremoval.html" class="editorial-service-link">
+                        Descoperă Detalii 
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
                 </div>
+            </div>
 
+            <!-- Service 5: Manichiura -->
+            <div class="editorial-service-row">
+                <div class="editorial-service-image hover-lift">
+                    <img src="assets/public/Manichiura&Pedichiura/front-view-healthy-beautiful-manicure.webp" alt="Manichiură & Pedichiură">
+                </div>
+                <div class="editorial-service-content">
+                    <h3 style="font-family: var(--font-body); font-weight: 400; font-size: 0.85rem; letter-spacing: 4px; text-transform: uppercase; color: var(--color-primary-gold); margin-bottom: 1rem;">Eleganță până la detalii</h3>
+                    <h2 class="editorial-row-title">Manichiură & Pedichiură</h2>
+                    <p class="editorial-row-desc">
+                        Fiecare vizită este o declarație de stil. Tehnicienii noștri își dedică măiestria spre a vă oferi o manichiură cu un aspect imaculat, modern sau sofisticat curat. Protejăm sănătatea unghiei pe termen lung printr-o tehnică impecabilă și igienă de grad medical.
+                    </p>
+                    <a href="pages/manichiura.html" class="editorial-service-link">
+                        Descoperă Detalii 
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Service 6: Coafor -->
+            <div class="editorial-service-row reverse">
+                <div class="editorial-service-image hover-lift">
+                    <img src="assets/public/Coafor&Makeup/Coafor1.webp" alt="Coafor">
+                </div>
+                <div class="editorial-service-content">
+                    <h3 style="font-family: var(--font-body); font-weight: 400; font-size: 0.85rem; letter-spacing: 4px; text-transform: uppercase; color: var(--color-primary-gold); margin-bottom: 1rem;">Stil și Vitalitate</h3>
+                    <h2 class="editorial-row-title">Coafor & Îngrijire</h2>
+                    <p class="editorial-row-desc">
+                        Un păr sănătos vorbește de la sine despre energia ta estetică. Fie că îți dorești un styling proaspăt, o culoare nouă vibrantă sau tratamente care să redea strălucirea firului de păr, aducem expertiza din zona produselor superioare direct în Sanctuarul Divine.
+                    </p>
+                    <a href="pages/coafor.html" class="editorial-service-link">
+                        Descoperă Detalii 
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Service 7: Makeup -->
+            <div class="editorial-service-row">
+                <div class="editorial-service-image hover-lift">
+                    <img src="assets/public/Coafor&Makeup/Makeup1.webp" alt="Make-up">
+                </div>
+                <div class="editorial-service-content">
+                    <h3 style="font-family: var(--font-body); font-weight: 400; font-size: 0.85rem; letter-spacing: 4px; text-transform: uppercase; color: var(--color-primary-gold); margin-bottom: 1rem;">Atracție Vizuală Pură</h3>
+                    <h2 class="editorial-row-title">Make-up Profesional</h2>
+                    <p class="editorial-row-desc">
+                        Machiajul nu este despre mascare, ci despre sublinierea unghiurilor tale cele mai favorabile. Pentru evenimente speciale, lăsăm pensulele să recreeze lumina pe chipul tău, utilizând branduri renumite pentru long-lasting și un finisaj demn de covoarele roșii.
+                    </p>
+                    <a href="pages/makeup.html" class="editorial-service-link">
+                        Descoperă Detalii 
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Service 8: Corporale -->
+            <div class="editorial-service-row reverse">
+                <div class="editorial-service-image hover-lift">
+                    <img src="assets/public/Corporale/woman-cosmetology-studio-laser-hair-removal.webp" alt="Tratamente Corporale">
+                </div>
+                <div class="editorial-service-content">
+                    <h3 style="font-family: var(--font-body); font-weight: 400; font-size: 0.85rem; letter-spacing: 4px; text-transform: uppercase; color: var(--color-primary-gold); margin-bottom: 1rem;">Remodelare la nivel de artă</h3>
+                    <h2 class="editorial-row-title">Tratamente Corporale</h2>
+                    <p class="editorial-row-desc">
+                        Atinge libertatea mișcării și conturul mult dorit. Platformele noastre utilizează tehnologii inovatoare precum EMS și presoterapie pentru tonifierea musculaturii și drenajul limfatic. Ajutăm la destrămarea adipozității și redobândirea fermității pielii corpului.
+                    </p>
+                    <a href="pages/corporale.html" class="editorial-service-link">
+                        Descoperă Detalii 
+                        <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -195,7 +234,7 @@
                         <li><a href="index.html">Prima Pagină</a></li>
                         <li><a href="services.html">Servicii</a></li>
                         <li><a href="despre-noi.html">Despre Noi</a></li>
-                        <li><a href="#">Galerie</a></li>
+                        <li><a href="galerie.html">Galerie</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
                 </div>
@@ -226,7 +265,7 @@
                                 stroke-linejoin="round">
                                 <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
                             </svg></a>
-                        <a href="#" class="social-icon"><svg viewBox="0 0 24 24" width="18" height="18"
+                        <a href="https://www.instagram.com/vanessafrancesca.beauty?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noopener" class="social-icon"><svg viewBox="0 0 24 24" width="18" height="18"
                                 stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round">
                                 <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
