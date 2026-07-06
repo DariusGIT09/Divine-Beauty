@@ -231,6 +231,130 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add reveal classes after short delay to ensure DOM is ready
     setTimeout(addRevealClasses, 100);
 
+    // --- Team Cards Interactive Navigation ---
+    const initTeamActionCard = (cardId, panelId) => {
+        const card = document.getElementById(cardId);
+        const panel = document.getElementById(panelId);
+        if (!card || !panel) return;
+
+        const closePanel = () => {
+            panel.classList.remove('is-visible');
+            panel.setAttribute('aria-hidden', 'true');
+            card.classList.remove('is-active');
+            card.setAttribute('aria-expanded', 'false');
+        };
+
+        const openPanel = () => {
+            panel.classList.add('is-visible');
+            panel.setAttribute('aria-hidden', 'false');
+            card.classList.add('is-active');
+            card.setAttribute('aria-expanded', 'true');
+        };
+
+        const launchTo = (href, isExternal) => {
+            card.classList.add('is-launching');
+            setTimeout(() => {
+                if (isExternal) {
+                    window.open(href, '_blank', 'noopener');
+                } else {
+                    window.location.href = href;
+                }
+            }, 360);
+            setTimeout(() => {
+                card.classList.remove('is-launching');
+            }, 420);
+        };
+
+        card.addEventListener('click', (event) => {
+            if (event.target.closest('.team-action-btn')) return;
+            if (panel.classList.contains('is-visible')) {
+                closePanel();
+            } else {
+                openPanel();
+            }
+        });
+
+        card.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                if (panel.classList.contains('is-visible')) {
+                    closePanel();
+                } else {
+                    openPanel();
+                }
+            }
+        });
+
+        panel.querySelectorAll('.team-action-btn').forEach((btn) => {
+            btn.addEventListener('click', (event) => {
+                event.preventDefault();
+                const href = btn.getAttribute('data-nav-href') || btn.getAttribute('href');
+                const isExternal = btn.getAttribute('data-nav-external') === 'true';
+                launchTo(href, isExternal);
+            });
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!card.contains(event.target) && !panel.contains(event.target)) {
+                closePanel();
+            }
+        });
+    };
+
+    initTeamActionCard('vanessaCard', 'vanessaActionPanel');
+    initTeamActionCard('elizaCard', 'elizaActionPanel');
+
+    // --- Gallery Lightbox (click image to enlarge) ---
+    const galleryImages = document.querySelectorAll('.premium-gallery-item img');
+    if (galleryImages.length) {
+        const lightbox = document.createElement('div');
+        lightbox.className = 'gallery-lightbox';
+        lightbox.hidden = true;
+
+        const closeBtn = document.createElement('button');
+        closeBtn.className = 'gallery-lightbox-close';
+        closeBtn.type = 'button';
+        closeBtn.setAttribute('aria-label', 'Inchide imaginea');
+        closeBtn.textContent = 'x';
+
+        const lightboxImg = document.createElement('img');
+        lightboxImg.alt = 'Imagine marita';
+
+        lightbox.appendChild(closeBtn);
+        lightbox.appendChild(lightboxImg);
+        document.body.appendChild(lightbox);
+
+        const openLightbox = (img) => {
+            lightboxImg.src = img.currentSrc || img.src;
+            lightboxImg.alt = img.alt || 'Imagine marita';
+            lightbox.hidden = false;
+            document.body.style.overflow = 'hidden';
+        };
+
+        const closeLightbox = () => {
+            lightbox.hidden = true;
+            lightboxImg.src = '';
+            document.body.style.overflow = '';
+        };
+
+        galleryImages.forEach((img) => {
+            img.addEventListener('click', () => openLightbox(img));
+        });
+
+        closeBtn.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', (event) => {
+            if (event.target === lightbox) {
+                closeLightbox();
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && !lightbox.hidden) {
+                closeLightbox();
+            }
+        });
+    }
+
 });
 
 // Contact Form Handling with EmailJS

@@ -202,17 +202,17 @@
 
         .premium-panel.active {
             display: block;
-            animation: fadeInSlideUp 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+            animation: fadeInFromLeftCenter 0.62s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
         }
 
-        @keyframes fadeInSlideUp {
+        @keyframes fadeInFromLeftCenter {
             0% {
                 opacity: 0;
-                transform: translateY(30px) scale(0.98);
+                transform: translateX(-44px) scale(0.98);
             }
             100% {
                 opacity: 1;
-                transform: translateY(0) scale(1);
+                transform: translateX(0) scale(1);
             }
         }
 
@@ -366,16 +366,76 @@
             }
         }
 
-        /* SPECIALIST PROFILE IN SIDEBAR */
+        /* SPECIALIST SELECTOR IN SIDEBAR */
+        .specialist-switcher {
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .specialist-switch {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            gap: 15px;
+            width: 100%;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 12px;
+            padding: 1rem 0.9rem;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .specialist-switch:hover {
+            transform: translateY(-3px);
+            border-color: rgba(212, 175, 55, 0.42);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.05);
+        }
+
+        .specialist-switch.active {
+            border-color: rgba(212, 175, 55, 0.62);
+            background: rgba(255, 255, 255, 0.86);
+            box-shadow: 0 14px 28px rgba(212, 175, 55, 0.14);
+        }
+
         .specialist-profile {
             display: flex;
             flex-direction: column;
             align-items: center;
             text-align: center;
-            padding-bottom: 2rem;
-            margin-bottom: 1.5rem;
+            padding-bottom: 1.3rem;
+            margin-bottom: 1rem;
             border-bottom: 1px solid rgba(212, 175, 55, 0.2);
             gap: 15px;
+        }
+
+        .specialist-profile:last-of-type {
+            margin-bottom: 1.3rem;
+        }
+
+        .specialist-tabs-group {
+            display: none;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .specialist-tabs-group.active {
+            display: flex;
+            animation: tabsReveal 0.35s ease;
+        }
+
+        @keyframes tabsReveal {
+            from {
+                opacity: 0;
+                transform: translateX(-12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
         
         .specialist-avatar {
@@ -415,6 +475,17 @@
         }
 
         @media (max-width: 900px) {
+            .specialist-switcher {
+                width: 100%;
+            }
+
+            .specialist-switch {
+                flex-direction: row;
+                text-align: left;
+                justify-content: flex-start;
+                gap: 14px;
+            }
+
             .specialist-profile {
                 flex-direction: row;
                 text-align: left;
@@ -498,28 +569,43 @@
                 <!-- SIDEBAR -->
                 <div class="premium-tabs-sidebar">
                     
-                    <!-- STAFF PROFILE HEADER -->
-                    <div class="specialist-profile">
-                        <img src="assets/VanessaFrancesca.webp" alt="Vanessa Francesca" class="specialist-avatar">
-                        <div class="specialist-info">
-                            <h3>Vanessa Francesca</h3>
-                            <p>Founder & Master Cosmetician</p>
-                        </div>
+                    <!-- STAFF SWITCHER -->
+                    <div class="specialist-switcher">
+                        <button class="specialist-switch active" data-specialist="vanessa" aria-label="Preturi Vanessa Francesca">
+                            <img src="assets/VanessaFrancesca.webp" alt="Vanessa Francesca" class="specialist-avatar">
+                            <div class="specialist-info">
+                                <h3>Vanessa Francesca</h3>
+                                <p>Founder & Master Cosmetician</p>
+                            </div>
+                        </button>
+                        <button class="specialist-switch" data-specialist="eliza" aria-label="Preturi Eliza Rusu">
+                            <img src="assets/public/Makeup Eliza Rusu/IMG_1138.PNG" alt="Eliza Rusu" class="specialist-avatar">
+                            <div class="specialist-info">
+                                <h3>Eliza Rusu</h3>
+                                <p>Makeup Artist</p>
+                            </div>
+                        </button>
                     </div>
 
-                    <button class="premium-tab-btn active" data-target="panel-micropigmentare">Micropigmentare</button>
-                    <button class="premium-tab-btn" data-target="panel-laminare-sprancene">Laminare Sprâncene</button>
-                    <button class="premium-tab-btn" data-target="panel-laminare-gene">Laminare Gene</button>
-                    <button class="premium-tab-btn" data-target="panel-cicatrici">Dermo. Cicatrici</button>
-                    <button class="premium-tab-btn" data-target="panel-faciale">Tratamente Faciale</button>
-                    <button class="premium-tab-btn" data-target="panel-corporale">Tratamente Corporale</button>
+                    <div class="specialist-tabs-group active" data-specialist-tabs="vanessa">
+                        <button class="premium-tab-btn active" data-target="panel-micropigmentare">Micropigmentare</button>
+                        <button class="premium-tab-btn" data-target="panel-laminare-sprancene">Laminare Sprâncene</button>
+                        <button class="premium-tab-btn" data-target="panel-laminare-gene">Laminare Gene</button>
+                        <button class="premium-tab-btn" data-target="panel-cicatrici">Dermo. Cicatrici</button>
+                        <button class="premium-tab-btn" data-target="panel-faciale">Tratamente Faciale</button>
+                        <button class="premium-tab-btn" data-target="panel-corporale">Tratamente Corporale</button>
+                    </div>
+
+                    <div class="specialist-tabs-group" data-specialist-tabs="eliza">
+                        <button class="premium-tab-btn" data-target="panel-makeup-eliza">Makeup Eliza</button>
+                    </div>
                 </div>
 
                 <!-- CONTENT PANELS -->
                 <div class="premium-prices-content">
                     
                     <!-- Panel: Micropigmentare -->
-                    <div class="premium-panel active" id="panel-micropigmentare">
+                    <div class="premium-panel active" id="panel-micropigmentare" data-specialist="vanessa">
                         <div class="panel-header">
                             <h3>Micropigmentare</h3>
                             <div class="diamond-divider"></div>
@@ -565,7 +651,7 @@
                     </div>
 
                     <!-- Panel: Laminare Sprancene -->
-                    <div class="premium-panel" id="panel-laminare-sprancene">
+                    <div class="premium-panel" id="panel-laminare-sprancene" data-specialist="vanessa">
                         <div class="panel-header">
                             <h3>Laminare Sprâncene</h3>
                             <div class="diamond-divider"></div>
@@ -598,7 +684,7 @@
                     </div>
 
                     <!-- Panel: Laminare Gene -->
-                    <div class="premium-panel" id="panel-laminare-gene">
+                    <div class="premium-panel" id="panel-laminare-gene" data-specialist="vanessa">
                         <div class="panel-header">
                             <h3>Laminare Gene</h3>
                             <div class="diamond-divider"></div>
@@ -623,7 +709,7 @@
                     </div>
 
                     <!-- Panel: Dermopigmentare Cicatrici -->
-                    <div class="premium-panel" id="panel-cicatrici">
+                    <div class="premium-panel" id="panel-cicatrici" data-specialist="vanessa">
                         <div class="panel-header">
                             <h3>Dermopigmentare Cicatrici</h3>
                             <div class="diamond-divider"></div>
@@ -655,7 +741,7 @@
                     </div>
 
                     <!-- Panel: Tratamente Faciale -->
-                    <div class="premium-panel" id="panel-faciale">
+                    <div class="premium-panel" id="panel-faciale" data-specialist="vanessa">
                         <div class="panel-header">
                             <h3>Tratamente Faciale</h3>
                             <div class="diamond-divider"></div>
@@ -703,7 +789,7 @@
                     </div>
 
                     <!-- Panel: Tratamente Corporale -->
-                    <div class="premium-panel" id="panel-corporale">
+                    <div class="premium-panel" id="panel-corporale" data-specialist="vanessa">
                         <div class="panel-header">
                             <h3>Tratamente Corporale</h3>
                             <div class="diamond-divider"></div>
@@ -814,6 +900,49 @@
                         </div>
                     </div>
 
+                    <!-- Panel: Makeup Eliza -->
+                    <div class="premium-panel" id="panel-makeup-eliza" data-specialist="eliza">
+                        <div class="panel-header">
+                            <h3>Makeup Eliza</h3>
+                            <div class="diamond-divider"></div>
+                            <p class="panel-subtitle">Machiaj profesional pentru evenimente speciale, cu focus pe rezistenta, eleganta si personalizare.</p>
+                        </div>
+                        <div class="premium-price-list">
+                            <div class="premium-price-item">
+                                <div class="ppi-info">
+                                    <h4 class="ppi-name">Machiaj de ocazie - gene incluse</h4>
+                                    <p class="ppi-desc">Durata: 1 h 30 min · Machiaj rezistent, de ocazie, cu gene incluse.</p>
+                                </div>
+                                <div class="ppi-dots"></div>
+                                <div class="ppi-value">230 lei</div>
+                            </div>
+                            <div class="premium-price-item">
+                                <div class="ppi-info">
+                                    <h4 class="ppi-name">Machiaj de ocazie fara gene</h4>
+                                    <p class="ppi-desc">Durata: 1 h</p>
+                                </div>
+                                <div class="ppi-dots"></div>
+                                <div class="ppi-value">200 lei</div>
+                            </div>
+                            <div class="premium-price-item">
+                                <div class="ppi-info">
+                                    <h4 class="ppi-name">Machiaj de proba mireasa</h4>
+                                    <p class="ppi-desc">Durata: 1 h 30 min · Machiajul include si gene.</p>
+                                </div>
+                                <div class="ppi-dots"></div>
+                                <div class="ppi-value">230 lei</div>
+                            </div>
+                            <div class="premium-price-item">
+                                <div class="ppi-info">
+                                    <h4 class="ppi-name">Machiaj mireasa</h4>
+                                    <p class="ppi-desc">Durata: 1 h 30 min · Machiajul include gene.</p>
+                                </div>
+                                <div class="ppi-dots"></div>
+                                <div class="ppi-value">400 lei</div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -879,26 +1008,54 @@
     <script src="main.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
+            const specialistSwitches = document.querySelectorAll('.specialist-switch');
+            const tabGroups = document.querySelectorAll('.specialist-tabs-group');
             const tabs = document.querySelectorAll('.premium-tab-btn');
             const panels = document.querySelectorAll('.premium-panel');
 
+            const activateTab = (tab) => {
+                if (!tab) return;
+
+                tabs.forEach(t => t.classList.remove('active'));
+                panels.forEach(p => p.classList.remove('active'));
+
+                tab.classList.add('active');
+                const targetId = tab.getAttribute('data-target');
+                const targetPanel = document.getElementById(targetId);
+                if (targetPanel) {
+                    targetPanel.classList.add('active');
+                }
+            };
+
+            const setActiveSpecialist = (specialistKey) => {
+                specialistSwitches.forEach(btn => {
+                    btn.classList.toggle('active', btn.getAttribute('data-specialist') === specialistKey);
+                });
+
+                tabGroups.forEach(group => {
+                    const isMatch = group.getAttribute('data-specialist-tabs') === specialistKey;
+                    group.classList.toggle('active', isMatch);
+                });
+
+                const activeGroup = document.querySelector(`.specialist-tabs-group[data-specialist-tabs="${specialistKey}"]`);
+                const firstTab = activeGroup ? activeGroup.querySelector('.premium-tab-btn') : null;
+                activateTab(firstTab);
+            };
+
             tabs.forEach(tab => {
                 tab.addEventListener('click', () => {
-                    // Remove active from all
-                    tabs.forEach(t => t.classList.remove('active'));
-                    panels.forEach(p => p.classList.remove('active'));
-
-                    // Add active to clicked tab
-                    tab.classList.add('active');
-                    
-                    // Show corresponding panel
-                    const targetId = tab.getAttribute('data-target');
-                    const targetPanel = document.getElementById(targetId);
-                    if (targetPanel) {
-                        targetPanel.classList.add('active');
-                    }
+                    activateTab(tab);
                 });
             });
+
+            specialistSwitches.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const specialistKey = btn.getAttribute('data-specialist');
+                    setActiveSpecialist(specialistKey);
+                });
+            });
+
+            setActiveSpecialist('vanessa');
         });
     </script>
 </body>
