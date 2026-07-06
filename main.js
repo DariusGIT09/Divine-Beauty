@@ -418,6 +418,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (cards.length === 0) return;
 
     let currentIndex = 0;
+    let autoPlay = null;
     
     function updateStack() {
         cards.forEach((card, index) => {
@@ -452,15 +453,32 @@ document.addEventListener('DOMContentLoaded', () => {
             updateStack();
         }, 400); // 400ms buffer allows the exit transition to finish gracefully
     }
+
+    function startAutoPlay() {
+        clearInterval(autoPlay);
+        autoPlay = setInterval(slideNext, 3800);
+    }
+
+    function startSlider() {
+        requestAnimationFrame(() => {
+            setTimeout(() => {
+                updateStack();
+                startAutoPlay();
+            }, 450);
+        });
+    }
     
     updateStack();
     
     stackContainer.addEventListener('click', () => {
         slideNext();
         // Reset timer when manually tapped
-        clearInterval(autoPlay);
-        autoPlay = setInterval(slideNext, 3800);
+        startAutoPlay();
     });
-    
-    let autoPlay = setInterval(slideNext, 3800);
+
+    if (document.readyState === 'complete') {
+        startSlider();
+    } else {
+        window.addEventListener('load', startSlider, { once: true });
+    }
 });
