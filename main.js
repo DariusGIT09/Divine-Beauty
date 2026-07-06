@@ -231,6 +231,32 @@ document.addEventListener('DOMContentLoaded', () => {
     // Add reveal classes after short delay to ensure DOM is ready
     setTimeout(addRevealClasses, 100);
 
+    // --- Keep gallery carousels in a reliable infinite loop ---
+    const initGalleryInfiniteCarousels = () => {
+        if (!document.body.classList.contains('gallery-page-fullview')) return;
+
+        const tracks = document.querySelectorAll('.makeup-carousel-track');
+        tracks.forEach((track) => {
+            const images = track.querySelectorAll('img');
+            images.forEach((img) => {
+                // Lazy loading can leave duplicate-track images unloaded and create visual gaps.
+                img.loading = 'eager';
+                img.decoding = 'async';
+            });
+
+            const restartAnimation = () => {
+                track.style.animation = 'none';
+                void track.offsetWidth;
+                track.style.animation = '';
+            };
+
+            restartAnimation();
+            window.addEventListener('load', restartAnimation, { once: true });
+        });
+    };
+
+    initGalleryInfiniteCarousels();
+
     // --- Team Cards Interactive Navigation ---
     const initTeamActionCard = (cardId, panelId) => {
         const card = document.getElementById(cardId);

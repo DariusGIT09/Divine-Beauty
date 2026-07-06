@@ -1460,6 +1460,38 @@ footer {
     max-width: 12ch;
 }
 
+.about-page .founder-content > .section-title {
+    display: block;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.about-page .founder-content > .section-title::after {
+    display: none;
+}
+
+.about-page .founder-content > .diamond-divider {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+.about-page .sanctuary-title {
+    display: block;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.about-page .sanctuary-title::after {
+    display: none;
+}
+
+.about-page .sanctuary-divider {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
 @media (max-width: 768px) {
     .about-page .editorial-text.glass-panel {
         padding: 1.5rem;
@@ -2990,10 +3022,6 @@ img:not(.lazy) {
     will-change: transform;
 }
 
-.makeup-carousel-shell:hover .makeup-carousel-track {
-    animation-play-state: paused;
-}
-
 .makeup-carousel-group {
     display: flex;
     gap: 1rem;
@@ -3145,12 +3173,11 @@ img:not(.lazy) {
 
 @media (prefers-reduced-motion: reduce) {
     .makeup-carousel-track {
-        animation: none;
+        animation-duration: 140s;
     }
 
     .makeup-carousel-shell {
-        overflow-x: auto;
-        scrollbar-width: thin;
+        overflow: hidden;
     }
 }
 
@@ -3478,6 +3505,20 @@ img:not(.lazy) {
 @media (max-width: 768px) {
     .services-page .page-title {
         font-size: 1.7rem;
+    }
+
+    .services-page .editorial-service-image {
+        width: 100%;
+        height: 260px;
+        min-height: 260px;
+        max-height: 260px;
+    }
+
+    .services-page .editorial-service-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
     }
 
     .services-page .section-title,
