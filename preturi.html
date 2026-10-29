@@ -268,7 +268,6 @@
             align-items: flex-end;
             padding: 1rem 1.5rem;
             border-radius: 12px;
-            transition: all 0.4s ease;
             background: transparent;
             position: relative;
             z-index: 1;
@@ -279,21 +278,26 @@
             content: '';
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(90deg, rgba(255,255,255,0.8), rgba(255,255,255,0.4));
+            background: linear-gradient(90deg, rgba(212, 175, 55, 0.07), rgba(212, 175, 55, 0.02));
             z-index: -1;
             opacity: 0;
-            transition: opacity 0.4s ease;
+            transition: opacity 0.18s ease;
             border-radius: 12px;
+            pointer-events: none;
         }
 
-        .premium-price-item:hover::before {
+        .premium-price-item:focus-within::before {
             opacity: 1;
         }
 
-        .premium-price-item:hover {
-            transform: translateX(8px) scale(1.01);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.04);
-            border: 1px solid rgba(255,255,255,0.8);
+        @media (hover: hover) and (pointer: fine) {
+            .premium-price-item:hover::before {
+                opacity: 1;
+            }
+
+            .premium-price-item:hover .ppi-dots {
+                border-bottom-color: rgba(212, 175, 55, 0.6);
+            }
         }
 
         @media (max-width: 600px) {
@@ -301,9 +305,6 @@
                 flex-direction: column;
                 align-items: flex-start;
                 gap: 0.5rem;
-            }
-            .premium-price-item:hover {
-                transform: translateY(-3px);
             }
         }
 
@@ -337,11 +338,18 @@
             flex-grow: 1;
             border-bottom: 2px dotted rgba(212, 175, 55, 0.3);
             margin: 0 15px 8px 0;
-            transition: border-color 0.3s ease;
+            transition: border-color 0.18s ease;
         }
 
-        .premium-price-item:hover .ppi-dots {
-            border-bottom: 2px dotted rgba(212, 175, 55, 0.8);
+        .premium-price-item:focus-within .ppi-dots {
+            border-bottom-color: rgba(212, 175, 55, 0.6);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .premium-price-item::before,
+            .ppi-dots {
+                transition: none;
+            }
         }
 
         @media (max-width: 600px) {
