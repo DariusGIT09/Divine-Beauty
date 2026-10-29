@@ -308,8 +308,11 @@
         }
 
         .ppi-info {
-            flex-shrink: 0;
+            flex-shrink: 1;
+            min-width: 0;
+            max-width: 100%;
             padding-right: 20px;
+            overflow-wrap: anywhere;
         }
 
         .ppi-name {
@@ -349,6 +352,7 @@
 
         .ppi-value {
             flex-shrink: 0;
+            white-space: nowrap;
             font-family: var(--font-heading);
             font-size: 1.4rem;
             font-weight: 700;
@@ -363,6 +367,153 @@
             .ppi-value {
                 font-size: 1.25rem;
                 align-self: flex-end;
+            }
+        }
+
+        .ppi-details-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.45rem;
+            margin-top: 0.7rem;
+            padding: 0.45rem 0.7rem;
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            border-radius: 6px;
+            background: rgba(212, 175, 55, 0.06);
+            color: #806418;
+            font: inherit;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s ease, border-color 0.2s ease;
+        }
+
+        .ppi-details-btn:hover {
+            background: rgba(212, 175, 55, 0.14);
+            border-color: var(--color-primary-gold);
+        }
+
+        .ppi-details-btn:focus-visible,
+        .treatment-dialog-close:focus-visible {
+            outline: 2px solid #806418;
+            outline-offset: 4px;
+        }
+
+        body.treatment-dialog-open {
+            overflow: hidden;
+        }
+
+        .treatment-dialog {
+            width: min(680px, calc(100% - 2rem));
+            max-height: calc(100vh - 2rem);
+            max-height: calc(100dvh - 2rem);
+            margin: auto;
+            padding: 0;
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            border-radius: 16px;
+            background: var(--color-bg-white);
+            color: var(--color-text-charcoal);
+            box-shadow: var(--shadow-card);
+            overflow: auto;
+        }
+
+        .treatment-dialog::backdrop {
+            background: rgba(26, 26, 26, 0.55);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+        }
+
+        .treatment-dialog-header {
+            position: sticky;
+            top: 0;
+            z-index: 1;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 1.5rem 2rem;
+            background: var(--color-bg-alabaster);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .treatment-dialog-header h2 {
+            margin: 0;
+            font-size: clamp(1.45rem, 4vw, 2rem);
+            line-height: 1.3;
+        }
+
+        .treatment-dialog-price {
+            margin-top: 0.5rem;
+            color: #806418;
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .treatment-dialog-close {
+            flex-shrink: 0;
+            display: grid;
+            place-items: center;
+            width: 44px;
+            height: 44px;
+            border: 1px solid rgba(212, 175, 55, 0.35);
+            border-radius: 50%;
+            background: var(--color-bg-white);
+            color: var(--color-text-charcoal);
+            font-size: 1.7rem;
+            line-height: 1;
+            cursor: pointer;
+        }
+
+        .treatment-dialog-body {
+            padding: 2rem;
+            line-height: 1.8;
+        }
+
+        .treatment-dialog-body p + p {
+            margin-top: 1rem;
+        }
+
+        .treatment-lead {
+            color: #806418;
+            font-family: var(--font-heading);
+            font-size: 1.15rem;
+            font-style: italic;
+        }
+
+        .treatment-benefits {
+            display: grid;
+            gap: 0.6rem;
+            margin: 1.25rem 0;
+        }
+
+        .treatment-benefits li {
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .treatment-benefits li::before {
+            content: '\2713';
+            position: absolute;
+            left: 0;
+            color: #806418;
+        }
+
+        .treatment-note {
+            margin-top: 1.5rem;
+            padding: 1rem 1.2rem;
+            border-left: 3px solid var(--color-primary-gold);
+            border-radius: 0 8px 8px 0;
+            background: rgba(212, 175, 55, 0.07);
+        }
+
+        @media (max-width: 600px) {
+            .ppi-info {
+                padding-right: 0;
+            }
+
+            .treatment-dialog-header,
+            .treatment-dialog-body {
+                padding: 1.25rem;
             }
         }
 
@@ -594,6 +745,7 @@
                         <button class="premium-tab-btn" data-target="panel-cicatrici">Dermo. Cicatrici</button>
                         <button class="premium-tab-btn" data-target="panel-faciale">Tratamente Faciale</button>
                         <button class="premium-tab-btn" data-target="panel-corporale">Tratamente Corporale</button>
+                        <button class="premium-tab-btn" data-target="panel-plasmapen">Plasmapen</button>
                     </div>
 
                     <div class="specialist-tabs-group" data-specialist-tabs="eliza">
@@ -638,14 +790,14 @@
                                     <h4 class="ppi-name">Buze</h4>
                                 </div>
                                 <div class="ppi-dots"></div>
-                                <div class="ppi-value">1200 lei</div>
+                                <div class="ppi-value">1000 lei</div>
                             </div>
                             <div class="premium-price-item">
                                 <div class="ppi-info">
                                     <h4 class="ppi-name">Eyeliner</h4>
                                 </div>
                                 <div class="ppi-dots"></div>
-                                <div class="ppi-value">900 lei</div>
+                                <div class="ppi-value">700 lei</div>
                             </div>
                         </div>
                     </div>
@@ -660,18 +812,17 @@
                         <div class="premium-price-list">
                             <div class="premium-price-item">
                                 <div class="ppi-info">
-                                    <h4 class="ppi-name">Brow Lift & Design</h4>
-                                    <p class="ppi-desc">✔ laminare ✔ arhitectură personalizată ✔ vopsit profesional</p>
+                                    <h4 class="ppi-name">Pensat simplu</h4>
                                 </div>
                                 <div class="ppi-dots"></div>
-                                <div class="ppi-value">260 lei</div>
+                                <div class="ppi-value">80 lei</div>
                             </div>
                             <div class="premium-price-item">
                                 <div class="ppi-info">
                                     <h4 class="ppi-name">Laminare sprâncene</h4>
                                 </div>
                                 <div class="ppi-dots"></div>
-                                <div class="ppi-value">180 lei</div>
+                                <div class="ppi-value">210 lei</div>
                             </div>
                             <div class="premium-price-item">
                                 <div class="ppi-info">
@@ -691,13 +842,6 @@
                             <p class="panel-subtitle">Gene curbate natural și privire seducătoare, fără machiaj adițional.</p>
                         </div>
                         <div class="premium-price-list">
-                            <div class="premium-price-item">
-                                <div class="ppi-info">
-                                    <h4 class="ppi-name">Lash lift</h4>
-                                </div>
-                                <div class="ppi-dots"></div>
-                                <div class="ppi-value">200 lei</div>
-                            </div>
                             <div class="premium-price-item">
                                 <div class="ppi-info">
                                     <h4 class="ppi-name">Lash lift & Tint</h4>
@@ -750,40 +894,59 @@
                         <div class="premium-price-list">
                             <div class="premium-price-item">
                                 <div class="ppi-info">
-                                    <h4 class="ppi-name">Biomicroneedling PhiBright</h4>
+                                    <h4 class="ppi-name">Biomicroneedling</h4>
+                                    <button type="button" class="ppi-details-btn" data-treatment-details="details-biomicroneedling" aria-haspopup="dialog" aria-controls="treatment-dialog" aria-label="Vezi detalii despre Biomicroneedling">Vezi detalii <span aria-hidden="true">&rarr;</span></button>
                                 </div>
                                 <div class="ppi-dots"></div>
                                 <div class="ppi-value">800 lei</div>
                             </div>
                             <div class="premium-price-item">
                                 <div class="ppi-info">
-                                    <h4 class="ppi-name">Microneedling PhiBright</h4>
+                                    <h4 class="ppi-name">Microneedling</h4>
+                                    <button type="button" class="ppi-details-btn" data-treatment-details="details-microneedling" aria-haspopup="dialog" aria-controls="treatment-dialog" aria-label="Vezi detalii despre Microneedling">Vezi detalii <span aria-hidden="true">&rarr;</span></button>
                                 </div>
                                 <div class="ppi-dots"></div>
-                                <div class="ppi-value">650 lei</div>
+                                <div class="ppi-value">450 lei</div>
                             </div>
                             <div class="premium-price-item">
                                 <div class="ppi-info">
-                                    <h4 class="ppi-name">Deep clean & Glow</h4>
+                                    <h4 class="ppi-name">Deep Clean &amp; Glow</h4>
+                                    <button type="button" class="ppi-details-btn" data-treatment-details="details-deep-clean" aria-haspopup="dialog" aria-controls="treatment-dialog" aria-label="Vezi detalii despre Deep Clean &amp; Glow">Vezi detalii <span aria-hidden="true">&rarr;</span></button>
                                 </div>
                                 <div class="ppi-dots"></div>
-                                <div class="ppi-value">350 lei</div>
+                                <div class="ppi-value">300 lei</div>
                             </div>
                             <div class="premium-price-item">
                                 <div class="ppi-info">
                                     <h4 class="ppi-name">Hydra Glow Infusion</h4>
-                                    <p class="ppi-desc">hidratare profundă, revitalizare și luminozitate</p>
+                                    <button type="button" class="ppi-details-btn" data-treatment-details="details-hydra-glow" aria-haspopup="dialog" aria-controls="treatment-dialog" aria-label="Vezi detalii despre Hydra Glow Infusion">Vezi detalii <span aria-hidden="true">&rarr;</span></button>
                                 </div>
                                 <div class="ppi-dots"></div>
-                                <div class="ppi-value">350 lei</div>
+                                <div class="ppi-value">370 lei</div>
                             </div>
                             <div class="premium-price-item">
                                 <div class="ppi-info">
-                                    <h4 class="ppi-name">Firm & Lift Therapy</h4>
-                                    <p class="ppi-desc">Fermitate și efect de lifting prin radiofrecvență</p>
+                                    <h4 class="ppi-name">Firm &amp; Lift Therapy</h4>
+                                    <button type="button" class="ppi-details-btn" data-treatment-details="details-firm-lift" aria-haspopup="dialog" aria-controls="treatment-dialog" aria-label="Vezi detalii despre Firm &amp; Lift Therapy">Vezi detalii <span aria-hidden="true">&rarr;</span></button>
                                 </div>
                                 <div class="ppi-dots"></div>
                                 <div class="ppi-value">400 lei</div>
+                            </div>
+                            <div class="premium-price-item">
+                                <div class="ppi-info">
+                                    <h4 class="ppi-name">Inject Glow Therapy</h4>
+                                    <button type="button" class="ppi-details-btn" data-treatment-details="details-inject-glow" aria-haspopup="dialog" aria-controls="treatment-dialog" aria-label="Vezi detalii despre Inject Glow Therapy">Vezi detalii <span aria-hidden="true">&rarr;</span></button>
+                                </div>
+                                <div class="ppi-dots"></div>
+                                <div class="ppi-value">500 lei</div>
+                            </div>
+                            <div class="premium-price-item">
+                                <div class="ppi-info">
+                                    <h4 class="ppi-name">Oxygen Glow Therapy</h4>
+                                    <button type="button" class="ppi-details-btn" data-treatment-details="details-oxygen-glow" aria-haspopup="dialog" aria-controls="treatment-dialog" aria-label="Vezi detalii despre Oxygen Glow Therapy">Vezi detalii <span aria-hidden="true">&rarr;</span></button>
+                                </div>
+                                <div class="ppi-dots"></div>
+                                <div class="ppi-value">300 lei</div>
                             </div>
                         </div>
                     </div>
@@ -801,7 +964,7 @@
                                     <h4 class="ppi-name">Presoterapie - drenaj limfatic</h4>
                                 </div>
                                 <div class="ppi-dots"></div>
-                                <div class="ppi-value">150 lei</div>
+                                <div class="ppi-value">150 lei / ședință</div>
                             </div>
                             <div class="premium-price-item">
                                 <div class="ppi-info">
@@ -815,7 +978,7 @@
                                     <h4 class="ppi-name">EMS BODY SCULPT & TONE</h4>
                                 </div>
                                 <div class="ppi-dots"></div>
-                                <div class="ppi-value">180 lei / zona</div>
+                                <div class="ppi-value">180 lei / zonă</div>
                             </div>
                             <div class="premium-price-item">
                                 <div class="ppi-info">
@@ -847,7 +1010,7 @@
                                     <p class="ppi-desc">Radiofrequency Body Lift</p>
                                 </div>
                                 <div class="ppi-dots"></div>
-                                <div class="ppi-value">200 lei</div>
+                                <div class="ppi-value">300 lei</div>
                             </div>
                             <div class="premium-price-item">
                                 <div class="ppi-info">
@@ -879,7 +1042,7 @@
                                     <p class="ppi-desc">Tonifiere, Detox și Anticelulitic</p>
                                 </div>
                                 <div class="ppi-dots"></div>
-                                <div class="ppi-value">450 lei</div>
+                                <div class="ppi-value">500 lei</div>
                             </div>
                             <div class="premium-price-item">
                                 <div class="ppi-info">
@@ -896,6 +1059,44 @@
                                 </div>
                                 <div class="ppi-dots"></div>
                                 <div class="ppi-value">700 lei</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Panel: Plasmapen -->
+                    <div class="premium-panel" id="panel-plasmapen" data-specialist="vanessa">
+                        <div class="panel-header">
+                            <h3>Plasmapen</h3>
+                            <div class="diamond-divider"></div>
+                        </div>
+                        <div class="premium-price-list">
+                            <div class="premium-price-item">
+                                <div class="ppi-info">
+                                    <h4 class="ppi-name">Pleoape superioare/inferioare</h4>
+                                </div>
+                                <div class="ppi-dots"></div>
+                                <div class="ppi-value">450 lei</div>
+                            </div>
+                            <div class="premium-price-item">
+                                <div class="ppi-info">
+                                    <h4 class="ppi-name">Riduri</h4>
+                                </div>
+                                <div class="ppi-dots"></div>
+                                <div class="ppi-value">450 lei</div>
+                            </div>
+                            <div class="premium-price-item">
+                                <div class="ppi-info">
+                                    <h4 class="ppi-name">Zonă mare</h4>
+                                </div>
+                                <div class="ppi-dots"></div>
+                                <div class="ppi-value">500–1700 lei</div>
+                            </div>
+                            <div class="premium-price-item">
+                                <div class="ppi-info">
+                                    <h4 class="ppi-name">INOFOS HIFU</h4>
+                                </div>
+                                <div class="ppi-dots"></div>
+                                <div class="ppi-value">500 lei / zonă</div>
                             </div>
                         </div>
                     </div>
@@ -947,6 +1148,119 @@
             </div>
         </div>
     </section>
+
+    <dialog class="treatment-dialog" id="treatment-dialog" aria-labelledby="treatment-dialog-title">
+        <div class="treatment-dialog-header">
+            <div>
+                <h2 id="treatment-dialog-title"></h2>
+                <p class="treatment-dialog-price" id="treatment-dialog-price"></p>
+            </div>
+            <button type="button" class="treatment-dialog-close" aria-label="Închide detaliile tratamentului" autofocus>&times;</button>
+        </div>
+        <div class="treatment-dialog-body" id="treatment-dialog-body"></div>
+    </dialog>
+
+    <template id="details-biomicroneedling">
+        <p class="treatment-lead">Rejuvenare fără ace</p>
+        <p>Biomicroneedling-ul este alternativa inovatoare la microneedlingul clasic — un tratament intens de regenerare care lucrează în profunzime fără disconfort major și fără timp mare de recuperare.</p>
+        <p>Acționează prin micro-spiculi naturali care stimulează regenerarea celulară și accelerează reînnoirea pielii. Practic, “trezește” pielea și o face să funcționeze din nou la capacitate maximă.</p>
+        <ul class="treatment-benefits">
+            <li>efect puternic de rejuvenare</li>
+            <li>piele mai fermă și mai luminoasă</li>
+            <li>estompare cicatrici și imperfecțiuni</li>
+            <li>reduce excesul de sebum și porii</li>
+            <li>îmbunătățește acneea și semnele post-acnee</li>
+            <li>stimulează natural colagenul</li>
+        </ul>
+        <p class="treatment-note">Tenul obosit, tern sau încărcat nu are nevoie de mai mult machiaj. Are nevoie de regenerare adevărată.</p>
+        <p>După biomicroneedling, pielea capătă acel aspect curat, sănătos și luminos.</p>
+    </template>
+
+    <template id="details-microneedling">
+        <p>Microneedling-ul este tratamentul care stimulează pielea să se repare singură, natural, prin producția de colagen și elastină — ten mai ferm, mai neted, mai luminos și vizibil întinerit.</p>
+        <ul class="treatment-benefits">
+            <li>estompează cicatricile post-acnee</li>
+            <li>reduce porii dilatați</li>
+            <li>netezește liniile fine și ridurile</li>
+            <li>îmbunătățește textura pielii</li>
+            <li>ajută la estomparea petelor și semnelor</li>
+            <li>oferă efect de “glass skin” sănătos și luminos</li>
+        </ul>
+        <p class="treatment-note">După tratament, pielea începe să se regenereze din interior, iar rezultatele devin tot mai frumoase de la o săptămână la alta.</p>
+    </template>
+
+    <template id="details-deep-clean">
+        <p class="treatment-lead">Curățare profundă. Hidratare. Luminozitate instantă.</p>
+        <p>Tratamentul perfect pentru un ten încărcat, tern sau lipsit de vitalitate. Deep Clean &amp; Glow combină curățarea profesională cu hidratarea și revitalizarea pielii, pentru un aspect fresh, sănătos și luminos încă de la prima ședință.</p>
+        <ul class="treatment-benefits">
+            <li>curăță porii în profunzime</li>
+            <li>elimină excesul de sebum și impuritățile</li>
+            <li>hidratează și calmează pielea</li>
+            <li>oferă efect de glow natural</li>
+            <li>îmbunătățește textura și aspectul tenului</li>
+            <li>ideal înainte de evenimente sau ca întreținere lunară</li>
+        </ul>
+        <p class="treatment-note">Pielea ta va arăta mai curată, mai fină și mai luminoasă, fără aspect încărcat sau obosit.</p>
+    </template>
+
+    <template id="details-hydra-glow">
+        <p class="treatment-lead">Hidratare profundă. Revitalizare. Glow instant.</p>
+        <p>Un tratament intensiv de hidratare și revitalizare realizat prin mezoterapie virtuală, destinat tenului deshidratat, tern sau lipsit de elasticitate. Ingredientele active sunt introduse în profunzime fără ace, pentru un efect vizibil de piele mai luminoasă și revitalizată.</p>
+        <ul class="treatment-benefits">
+            <li>hidratează intens pielea</li>
+            <li>redă luminozitatea naturală a tenului</li>
+            <li>îmbunătățește elasticitatea și aspectul pielii</li>
+            <li>calmează și revitalizează tenul obosit</li>
+            <li>ajută la uniformizarea texturii pielii</li>
+            <li>oferă efect fresh și healthy glow</li>
+        </ul>
+        <p class="treatment-note">Ideal înainte de evenimente sau ori de câte ori pielea ta are nevoie de un boost de hidratare și prospețime.</p>
+    </template>
+
+    <template id="details-firm-lift">
+        <p class="treatment-lead">Fermitate. Contur. Efect de lifting.</p>
+        <p>Tratament realizat prin radiofrecvență, destinat stimulării producției naturale de colagen și elastină pentru un ten mai ferm, mai neted și vizibil întinerit.</p>
+        <p>Căldura controlată acționează în profunzime pentru a reda pielii elasticitatea și efectul de lifting natural, fără proceduri invazive.</p>
+        <ul class="treatment-benefits">
+            <li>stimulează producția de colagen</li>
+            <li>îmbunătățește fermitatea pielii</li>
+            <li>redefinește conturul feței</li>
+            <li>reduce aspectul liniilor fine</li>
+            <li>oferă efect de lifting și tonifiere</li>
+            <li>piele mai netedă și mai luminoasă</li>
+        </ul>
+        <p class="treatment-note">Tratamentul perfect pentru pielea care începe să își piardă fermitatea și elasticitatea.</p>
+    </template>
+
+    <template id="details-inject-glow">
+        <p class="treatment-lead">Hidratare profundă. Revitalizare celulară. Efect de skin glow.</p>
+        <p>Mezoterapia injectabilă este unul dintre cele mai eficiente tratamente pentru revitalizarea și rejuvenarea pielii din interior. Cocktailurile de vitamine, aminoacizi și acid hialuronic sunt introduse direct în piele pentru un efect vizibil de hidratare, luminozitate și fermitate.</p>
+        <ul class="treatment-benefits">
+            <li>hidratează intens pielea</li>
+            <li>redă elasticitatea și fermitatea</li>
+            <li>îmbunătățește textura și tonusul pielii</li>
+            <li>estompează aspectul obosit și tern</li>
+            <li>stimulează regenerarea celulară</li>
+            <li>efect de glow sănătos și rejuvenare</li>
+        </ul>
+        <p class="treatment-note">Pielea devine mai luminoasă, mai fresh și vizibil revitalizată încă după primele ședințe.</p>
+        <p>Perfect pentru tenul deshidratat, lipsit de vitalitate sau pentru prevenirea semnelor de îmbătrânire.</p>
+    </template>
+
+    <template id="details-oxygen-glow">
+        <p class="treatment-lead">Oxigen pur. Hidratare. Luminozitate instantă.</p>
+        <p>Tratamentul cu oxygenoterapie oferă pielii un boost intens de oxigen și ingrediente active pentru un ten revitalizat, luminos și fresh. Ideal pentru pielea obosită, ternă sau deshidratată.</p>
+        <p>Oxigenul hiperbaric ajută la calmarea, revitalizarea și regenerarea pielii, oferind acel efect de “healthy glow” imediat după tratament.</p>
+        <ul class="treatment-benefits">
+            <li>hidratează și calmează pielea</li>
+            <li>redă luminozitatea naturală a tenului</li>
+            <li>ajută la regenerarea și revitalizarea pielii</li>
+            <li>oferă efect fresh și radiant</li>
+            <li>ideal pentru ten sensibil, tern sau obosit</li>
+            <li>perfect înainte de evenimente</li>
+        </ul>
+        <p class="treatment-note">Un tratament relaxant și revitalizant care oferă pielii acel aspect luminos și sănătos pe care îl observi imediat.</p>
+    </template>
 
     <footer>
         <div class="container">
@@ -1012,6 +1326,49 @@
             const tabGroups = document.querySelectorAll('.specialist-tabs-group');
             const tabs = document.querySelectorAll('.premium-tab-btn');
             const panels = document.querySelectorAll('.premium-panel');
+            const treatmentDialog = document.getElementById('treatment-dialog');
+            const treatmentTitle = document.getElementById('treatment-dialog-title');
+            const treatmentPrice = document.getElementById('treatment-dialog-price');
+            const treatmentBody = document.getElementById('treatment-dialog-body');
+
+            document.querySelectorAll('[data-treatment-details]').forEach(button => {
+                button.addEventListener('click', () => {
+                    const treatment = button.closest('.premium-price-item');
+                    const template = document.getElementById(button.dataset.treatmentDetails);
+
+                    treatmentTitle.textContent = treatment.querySelector('.ppi-name').textContent;
+                    treatmentPrice.textContent = treatment.querySelector('.ppi-value').textContent;
+                    treatmentBody.replaceChildren(template.content.cloneNode(true));
+                    treatmentDialog.showModal();
+                    treatmentDialog.scrollTop = 0;
+                    document.body.classList.add('treatment-dialog-open');
+                });
+            });
+
+            treatmentDialog.querySelector('.treatment-dialog-close').addEventListener('click', () => {
+                treatmentDialog.close();
+            });
+
+            treatmentDialog.addEventListener('keydown', event => {
+                if (event.key === 'Escape') {
+                    event.preventDefault();
+                    treatmentDialog.close();
+                }
+            });
+
+            treatmentDialog.addEventListener('click', event => {
+                if (event.target !== treatmentDialog) return;
+
+                const bounds = treatmentDialog.getBoundingClientRect();
+                if (event.clientX < bounds.left || event.clientX > bounds.right ||
+                    event.clientY < bounds.top || event.clientY > bounds.bottom) {
+                    treatmentDialog.close();
+                }
+            });
+
+            treatmentDialog.addEventListener('close', () => {
+                document.body.classList.remove('treatment-dialog-open');
+            });
 
             const activateTab = (tab) => {
                 if (!tab) return;
